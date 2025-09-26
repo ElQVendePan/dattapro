@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #199ed8;
+}
+
+body {
+    font-family: "lato", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "montserrat", sans-serif;
+}
