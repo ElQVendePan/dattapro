@@ -11,8 +11,8 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate", // Configura el Service Worker para actualizarse automáticamente.
       manifest: {
-        name: "dattapro", // Nombre completo de la aplicación.
-        short_name: "dattapro", // Nombre corto que aparece en la pantalla de inicio.
+        name: "Dattapro", // Nombre completo de la aplicación.
+        short_name: "Dattapro", // Nombre corto que aparece en la pantalla de inicio.
         description: "Plataforma web diseñada para gestionar, centralizar y mapear el talento humano de la Universidad Simón Bolívar.", // Descripción de la aplicación.
         theme_color: "#ffffff", // Color del tema que se muestra en la barra de herramientas del navegador.
         background_color: "#ffffff", // Color de fondo de la pantalla de carga inicial.
