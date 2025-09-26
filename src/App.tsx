@@ -1,3 +1,4 @@
+import Modal from './components/Modal'
 import Navbar from './components/Navbar'
 
 const App = () => {
@@ -8,6 +9,7 @@ const App = () => {
         <p>lorem ipsum dolor sit amet</p>
       </div>
       <Navbar></Navbar>
+      <Modal></Modal>
     </>
   )
 }
