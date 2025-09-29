@@ -52,7 +52,7 @@ const Modal = () => {
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
             >
-                <hr className='h-1 w-12 rounded-full border-none bg-neutral-300 mx-auto mb-6' />
+                <hr className={`h-1 rounded-full border-none bg-black ${isDragging ? 'w-14 opacity-50' : 'w-12 opacity-20'} mx-auto mb-6 duration-100`} />
                 {/* Image of the modal */}
                 <div className='w-16 h-16 text-primary mx-auto mb-3'>
                     <TiWarning className='w-full h-full' />

@@ -17,9 +17,9 @@ const Navbar = () => {
   return (
     <div className='bg-white px-4 pb-2 fixed bottom-0 w-full text-center'>
       <div className='grid grid-cols-4 gap-4'>
-        <NavbarItem active icon={<RiHome6Fill />} />
+        <NavbarItem icon={<RiHome6Fill />} />
         <NavbarItem icon={<FaSearch />} />
-        <NavbarItem icon={<HiMegaphone />} />
+        <NavbarItem active icon={<HiMegaphone />} />
         <NavbarItem icon={<IoPersonCircleSharp />} />
       </div>
     </div>
