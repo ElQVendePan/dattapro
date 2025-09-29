@@ -45,8 +45,9 @@ const Modal = () => {
         <div className='bg-black/30 backdrop-blur-sm fixed inset-0 flex items-center justify-center'>
             <div className='bg-white absolute w-full px-4 pt-3 pb-8 bottom-0 rounded-t-3xl'
                 style={{
-                    transform: `translateY(${translateY}px)`,
+                    transform: `translate3d(0, ${translateY}px, 0)`,
                     transition: isDragging ? 'none' : 'transform 0.3s ease',
+                    willChange: 'transform',
                 }}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
