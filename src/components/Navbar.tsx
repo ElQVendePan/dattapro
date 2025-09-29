@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom'
 
 const NavbarItem = ({ icon, active }: { icon: React.ReactNode, active?: boolean }) => {
   return (
-    <div className={`items-center justify-center flex p-2 rounded-full ${active ? 'bg-primary text-white opacity-100' : 'opacity-30'} duration-200`}>
-      <div className='text-2xl'>
+    <div className={`items-center justify-center flex p-2 rounded-full relative duration-200`}>
+      <div className={`rounded-full absolute mx-auto my-auto ${active ? 'w-full h-full bg-primary opacity-100' : 'w-[60%] h-[60%]'} duration-200`}></div>
+      <div className={`text-2xl relative ${active ? 'text-white' : 'opacity-40'} duration-200`}>
         {icon}
       </div>
     </div>
