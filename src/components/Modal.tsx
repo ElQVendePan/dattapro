@@ -66,8 +66,8 @@ const Modal = () => {
                 </div>
                 {/* button of the modal */}
                 <div className='mt-6 grid grid-cols-2 gap-4'>
-                    <Button text='Cancelar'></Button>
-                    <Button primary text='Aceptar'></Button>
+                    <Button>Cancelar</Button>
+                    <Button primary>Aceptar</Button>
                 </div>
             </div>
         </div>
