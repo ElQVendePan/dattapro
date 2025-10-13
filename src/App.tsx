@@ -1,6 +1,7 @@
-import { useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import { useState, useEffect } from 'react'
+import Login from './components/Login'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('/')
@@ -8,15 +9,18 @@ const App = () => {
 
   useEffect(() => {
     setCurrentPath(location.pathname)
-  }, [location.pathname]) // <- solo se ejecuta cuando cambia la ruta
+  }, [location.pathname])
 
   return (
     <>
-      <div>
-        <h1 className='text-3xl font-bold'>Hello, world!</h1>
-        <p>lorem ipsum dolor sit amet</p>
-      </div>
-      <Navbar currentPath={currentPath} />
+      <main className='p-5'>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </main>
+
+      {/* Solo renderiza el Navbar si NO está en /login */}
+      {currentPath !== '/login' && <Navbar currentPath={currentPath} />}
     </>
   )
 }

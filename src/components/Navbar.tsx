@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const NavbarItem = ({ icon, active }: { icon: React.ReactNode, active?: boolean }) => {
   return (
-    <div className={`items-center justify-center flex p-2 rounded-full relative duration-200`}>
+    <div className={`items-center justify-center flex p-2 py-3 rounded-full relative duration-200`}>
       <div className={`rounded-full absolute mx-auto my-auto ${active ? 'w-full h-full bg-primary opacity-100' : 'w-[60%] h-[60%]'} duration-200`}></div>
       <div className={`text-2xl relative ${active ? 'text-white' : 'opacity-40'} duration-200`}>
         {icon}
@@ -17,8 +17,8 @@ const NavbarItem = ({ icon, active }: { icon: React.ReactNode, active?: boolean 
 
 const Navbar = ({ currentPath }: { currentPath: string }) => {
   return (
-    <div className='bg-white px-4 pb-2 fixed bottom-0 w-full text-center'>
-      <div className='grid grid-cols-4 gap-4'>
+    <div className='bg-white p-4 fixed bottom-0 w-full text-center'>
+      <div className='grid grid-cols-4 gap-2'>
         <Link to='/'>
           <NavbarItem icon={<RiHome6Fill />} active={currentPath === '/'} />
         </Link>
