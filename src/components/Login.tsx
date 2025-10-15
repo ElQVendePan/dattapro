@@ -1,21 +1,19 @@
 import { FaLock, FaUser } from 'react-icons/fa'
 import Input from './Input'
 import Button from './Button'
-import { useUserStore } from '../store/useUserStore'
+// import { useUserStore } from '../store/useUserStore'
 
 const Login = () => {
 
-  const { setUserData } = useUserStore()
+  // const { setUserData } = useUserStore()
 
+  //Handle login for form
   const handleLogin = () => {
-    // Ejemplo: simular inicio de sesión
-    setUserData({
-      id: '123',
-      name: 'Daniel Meneses',
-      email: 'daniel@example.com',
-    })
-
-    window.location.href = `${import.meta.env.VITE_PAGE_URL}`
+    // setUserData({
+    //   id: '123',
+    //   name: 'Daniel Meneses',
+    //   email: 'daniel@example.com',
+    // })
   }
   return (
     <>
@@ -37,6 +35,9 @@ const Login = () => {
           <hr className="w-full h-0.5 rounded-full bg-neutral-200 border-none ml-4"></hr>
         </div>
         <Button onClick={handleLogin} className='border-1 border-neutral-300' icon={<img src='/microsoft-icon.png' alt='icon-microsoft' className='w-full h-full' />}>Iniciar sesión con Microsoft</Button>
+        <span className="block text-xs text-center opacity-60 mt-4">
+          Al iniciar sesión, aceptas nuestros <a href="#" className="underline">Términos de servicio</a> y <a href="#" className="underline">Política de privacidad</a>.
+        </span>
       </div>
     </>
   )
