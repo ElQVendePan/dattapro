@@ -1,9 +1,12 @@
 import { FaLock, FaUser } from 'react-icons/fa'
 import Input from './Input'
 import Button from './Button'
+import { useModal } from '../hook/useModal';
 // import { useUserStore } from '../store/useUserStore'
 
 const Login = () => {
+
+  const { openModal } = useModal();
 
   // const { setUserData } = useUserStore()
 
@@ -36,7 +39,7 @@ const Login = () => {
         </div>
         <Button onClick={handleLogin} className='border-1 border-neutral-300' icon={<img src='/microsoft-icon.png' alt='icon-microsoft' className='w-full h-full' />}>Iniciar sesión con Microsoft</Button>
         <span className="block text-xs text-center opacity-60 mt-4 mb-4">
-          Al iniciar sesión, aceptas nuestros <a href="#" className="text-primary underline">Términos de servicio</a> y <a href="#" className="text-primary underline">Política de privacidad</a>.
+          Al iniciar sesión, aceptas nuestros <span className="text-primary underline" onClick={openModal}>Términos de servicio</span> y <span className="text-primary underline" onClick={openModal}>Política de privacidad</span>.
         </span>
       </div>
     </>

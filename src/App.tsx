@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import { useState, useEffect } from 'react'
 import Login from './components/Login'
 import { useUserStore } from './store/useUserStore'
+import Modal from './components/Modal'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('/')
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
         </Routes>
       </main>
+      <Modal></Modal>
 
       {/* Solo renderiza el Navbar si NO está en /login */}
       {currentPath !== '/login' && <Navbar currentPath={currentPath} />}
