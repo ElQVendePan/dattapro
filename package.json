@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --mode dev",
     "dev:lan": "vite --mode devlan",
+    "dev:hotspot": "vite --mode hotspot",
     "build": "tsc -b && vite build --mode production",
     "lint": "eslint .",
     "preview": "vite preview"

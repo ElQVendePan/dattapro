@@ -1,4 +1,5 @@
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 interface InputProps {
     type?: string;
@@ -8,6 +9,11 @@ interface InputProps {
 }
 
 const Input = ({ type, icon, label, placeholder }: InputProps) => {
+    const [showPassword, setShowPassword] = useState(false)
+
+    const isPassword = type === 'password'
+    const inputType = isPassword ? (showPassword ? 'text' : 'password') : type
+
     return (
         <div>
             {label && <label className='block mb-2 font-semibold'>{label}</label>}
@@ -15,7 +21,16 @@ const Input = ({ type, icon, label, placeholder }: InputProps) => {
                 <div className='w-5 h-5 flex opacity-70'>
                     {icon}
                 </div>
-                <input type={type ? type : 'text'} placeholder={placeholder} className='bg-transparent outline-none flex-1' />
+                <input type={inputType} placeholder={placeholder} className='bg-transparent outline-none flex-1' />
+                {isPassword &&
+                    <div className='opacity-30 w-5 h-5 cursor-pointer select-none' onClick={() => setShowPassword(prev => !prev)}>
+                        {showPassword ? (
+                            <FaEyeSlash className='w-full h-full' />
+                        ) : (
+                            <FaEye className='w-full h-full' />
+                        )}
+                    </div>
+                }
             </div>
         </div>
     );

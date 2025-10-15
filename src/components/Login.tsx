@@ -18,7 +18,7 @@ const Login = () => {
   return (
     <>
       <video src="/blue-animation.mp4" className='fixed -z-10 w-full h-full object-cover top-0 left-0' muted autoPlay></video>
-      <div className='bg-white absolute left-0 bottom-0 p-5 py-8 rounded-t-2xl'>
+      <div className='bg-white absolute left-0 bottom-0 p-5 py-8'>
         <div className='mb-8'>
           <img src="/dattapro-icon.svg" className='w-10 inline-block mb-8' alt='' />
           <h1 className='font-bold text-2xl'>Bienvenido a Dattapro</h1>
@@ -35,8 +35,8 @@ const Login = () => {
           <hr className="w-full h-0.5 rounded-full bg-neutral-200 border-none ml-4"></hr>
         </div>
         <Button onClick={handleLogin} className='border-1 border-neutral-300' icon={<img src='/microsoft-icon.png' alt='icon-microsoft' className='w-full h-full' />}>Iniciar sesión con Microsoft</Button>
-        <span className="block text-xs text-center opacity-60 mt-4">
-          Al iniciar sesión, aceptas nuestros <a href="#" className="underline">Términos de servicio</a> y <a href="#" className="underline">Política de privacidad</a>.
+        <span className="block text-xs text-center opacity-60 mt-4 mb-4">
+          Al iniciar sesión, aceptas nuestros <a href="#" className="text-primary underline">Términos de servicio</a> y <a href="#" className="text-primary underline">Política de privacidad</a>.
         </span>
       </div>
     </>
