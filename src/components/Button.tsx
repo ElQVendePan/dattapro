@@ -1,16 +1,19 @@
-import type { ReactNode } from 'react'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import React from 'react'
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode
     icon?: ReactNode
     primary?: boolean
     className?: string
 }
 
-const Button: React.FC<ButtonProps> = ({ primary, icon, className, children }) => {
+const Button: React.FC<ButtonProps> = ({children, icon, primary = false, className = '', onClick, ...props}) => {
     return (
-        <button className={`${className} p-4 rounded-xl w-full flex items-center justify-center gap-3 ${primary ? 'bg-primary text-white font-bold' : 'bg-neutral-100 font-semibold'}`}>
-            {icon && <div className="w-6 h-6 flex-shrink-0">{icon}</div>}
+        <button
+            onClick={onClick}
+            className={`p-4 rounded-xl w-full flex items-center justify-center gap-3 transition-all duration-200 active:scale-[0.96] active:brightness-110 ${primary ? 'bg-primary text-white font-bold' : 'bg-neutral-100 font-semibold'} ${className}`} {...props}>
+            {icon && <span className="w-6 h-6 flex-shrink-0">{icon}</span>}
             <span>{children}</span>
         </button>
     )
