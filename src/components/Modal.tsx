@@ -35,17 +35,17 @@ const Modal = () => {
     const handleTouchEnd = () => {
         setIsDragging(false)
         if (translateY > 150) {
-            console.log('Cerrar modal 🚪') // umbral de cierre
+            console.log('Cerrar modal 🚪')
             setTranslateY(0)
         } else {
-            setTranslateY(0) // vuelve a su lugar
+            setTranslateY(0)
         }
         startY.current = null
     }
 
     return (
         <>
-            <div className={`${isOpen ? 'visible' : 'hidden'} bg-black/15 backdrop-blur-lg fixed inset-0 flex items-center justify-center`}>
+            <div className={`fixed inset-0 flex items-center justify-center bg-black/15 backdrop-blur-lg transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className={`${isOpen ? 'bottom-0 opacity-100' : '-bottom-30 opacity-0'} bg-white absolute w-full px-4 pt-3 pb-8 rounded-t-3xl`}
                     style={{
                         transform: `translate3d(0, ${translateY}px, 0)`,
