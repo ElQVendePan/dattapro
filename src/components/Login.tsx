@@ -2,26 +2,26 @@ import { FaLock, FaUser } from 'react-icons/fa'
 import Input from './Input'
 import Button from './Button'
 import { useModal } from '../hook/useModal';
-// import { useUserStore } from '../store/useUserStore'
+import { useUserStore } from '../store/useUserStore'
 
 const Login = () => {
 
   const { openModal } = useModal();
 
-  // const { setUserData } = useUserStore()
+  const { setUserData } = useUserStore()
 
   //Handle login for form
   const handleLogin = () => {
-    // setUserData({
-    //   id: '123',
-    //   name: 'Daniel Meneses',
-    //   email: 'daniel@example.com',
-    // })
+    setUserData({
+      id: '123',
+      name: 'Daniel Meneses',
+      email: 'daniel@example.com',
+    })
   }
   return (
     <>
       <video src="/blue-animation.mp4" className='fixed -z-10 w-full h-full object-cover top-0 left-0' muted autoPlay></video>
-      <div className='bg-white absolute left-0 bottom-0 p-5 py-8'>
+      <div className='bg-white absolute left-0 bottom-0 p-5 py-8 select-none'>
         <div className='mb-8'>
           <img src="/dattapro-icon.svg" className='w-10 inline-block mb-8' alt='' />
           <h1 className='font-bold text-2xl'>Bienvenido a Dattapro</h1>

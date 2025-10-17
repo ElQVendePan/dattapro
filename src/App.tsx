@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Login from './components/Login'
 import { useUserStore } from './store/useUserStore'
 import Modal from './components/Modal'
+import Search from './components/Search'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('/')
@@ -28,6 +29,7 @@ const App = () => {
       <main className='p-5'>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path='/search' element={<Search />} />
         </Routes>
       </main>
       <Modal></Modal>
