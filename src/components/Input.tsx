@@ -6,9 +6,10 @@ interface InputProps {
     icon?: ReactNode;
     label?: string;
     placeholder?: string;
+    className?: string;
 }
 
-const Input = ({ type, icon, label, placeholder }: InputProps) => {
+const Input = ({ type, icon, label, placeholder, className }: InputProps) => {
     const [showPassword, setShowPassword] = useState(false)
 
     const isPassword = type === 'password'
@@ -16,11 +17,11 @@ const Input = ({ type, icon, label, placeholder }: InputProps) => {
 
     return (
         <div>
-            {label && <label className='block mb-2 font-semibold'>{label}</label>}
-            <div className='bg-neutral-100 p-4 rounded-xl flex items-center gap-4'>
-                <div className='w-5 h-5 flex opacity-70'>
+            {label && <label className={`block mb-2 font-semibold ${className}`}>{label}</label>}
+            <div className={`bg-bg-secondary p-4 rounded-xl flex items-center gap-3 ${className}`}>
+                {icon && <div className='w-5 h-5 flex opacity-70'>
                     {icon}
-                </div>
+                </div>}
                 <input type={inputType} placeholder={placeholder} className='bg-transparent outline-none flex-1' />
                 {isPassword &&
                     <div className='opacity-30 w-5 h-5 cursor-pointer select-none' onClick={() => setShowPassword(prev => !prev)}>

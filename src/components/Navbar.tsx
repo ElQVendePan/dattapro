@@ -1,4 +1,4 @@
-import { FaSearch } from 'react-icons/fa'
+import { BsFillPeopleFill } from 'react-icons/bs'
 import { HiMegaphone } from 'react-icons/hi2'
 import { IoPersonCircleSharp } from 'react-icons/io5'
 import { RiHome6Fill } from 'react-icons/ri'
@@ -23,7 +23,7 @@ const Navbar = ({ currentPath }: { currentPath: string }) => {
           <NavbarItem icon={<RiHome6Fill />} active={currentPath === '/'} />
         </Link>
         <Link to='/search'>
-          <NavbarItem icon={<FaSearch />} active={currentPath === '/search'} />
+          <NavbarItem icon={<BsFillPeopleFill />} active={currentPath === '/search'} />
         </Link>
         <Link to='/notifications'>
           <NavbarItem icon={<HiMegaphone />} active={currentPath === '/notifications'} />
