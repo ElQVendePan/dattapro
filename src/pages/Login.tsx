@@ -1,6 +1,6 @@
 import { FaLock, FaUser } from 'react-icons/fa'
-import Input from './Input'
-import Button from './Button'
+import Input from '../components/Input'
+import Button from '../components/Button'
 import { useModal } from '../hook/useModal';
 import { useUserStore } from '../store/useUserStore'
 

@@ -1,10 +1,10 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import { useState, useEffect } from 'react'
-import Login from './components/Login'
+import Login from './pages/Login'
 import { useUserStore } from './store/useUserStore'
 import Modal from './components/Modal'
-import Search from './components/Search'
+import Search from './pages/Search'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('/')

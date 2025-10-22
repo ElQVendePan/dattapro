@@ -23,7 +23,7 @@ export const useUserStore = create<UserStore>()(
       setUserData: (data) => {
         console.log('Setting user data:', data)
         set({ userData: data })
-        window.location.href = `${import.meta.env.VITE_PAGE_URL}/search`
+        window.location.href = `${import.meta.env.VITE_PAGE_URL}search`
       },
     }),
     {
