@@ -57,30 +57,22 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ id }) => {
   }
 
   return (
-    <div className="flex flex-col items-center bg-white shadow-sm border border-gray-200 rounded-2xl p-6 hover:shadow-md transition-all duration-200 w-full max-w-sm mx-auto">
-      <img
-        src={teacher.foto}
-        alt={teacher.nombre}
-        className="w-24 h-24 rounded-full object-cover mb-4 border-2 border-blue-100"
-      />
-
-      <div className="text-center">
-        <h3 className="text-lg font-semibold text-gray-900">
-          {teacher.nombre}{" "}
+    <div className="rounded-xl bg-bg-secondary border-1 border-bg-third p-4">
+      <div className="flex items-center">
+        <img src={teacher.foto} alt={teacher.nombre} className="w-16 h-16 rounded-xl object-cover" />
+        <div className="w-full pl-4">
+          <h3 className="text-lg font-semibold">{teacher.nombre}</h3>
           <span className="text-gray-500 font-normal">{teacher.apellido}</span>
-        </h3>
-
-        <p className="text-sm text-gray-600 mt-1">
-          {teacher.facultad} —{" "}
-          <span className="text-gray-500">{teacher.departamento}</span>
-        </p>
-
+          <p className="text-sm text-gray-600">
+            {teacher.facultad} —{" "}
+            <span className="text-gray-500">{teacher.departamento}</span>
+          </p>
+        </div>
+      </div>
+      <div>
         <div className="flex flex-wrap justify-center gap-2 mt-3">
           {teacher.areas.map((area, i) => (
-            <span
-              key={i}
-              className="bg-blue-50 text-blue-700 text-xs font-medium px-2 py-1 rounded-full"
-            >
+            <span key={i} className="bg-blue-50 text-blue-700 text-xs font-medium px-2 py-1 rounded-full" >
               {area}
             </span>
           ))}

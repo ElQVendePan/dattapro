@@ -5,9 +5,12 @@ import Login from './pages/Login'
 import { useUserStore } from './store/useUserStore'
 import Modal from './components/Modal'
 import Search from './pages/Search'
+import Convocatorias from './pages/Convocatorias'
+import Header from './components/Header'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('/')
+  const [headerTitle, setHeaderTitle] = useState('')
   const location = useLocation()
 
   const { userData } = useUserStore()
@@ -16,6 +19,19 @@ const App = () => {
   useEffect(() => {
     setCurrentPath(location.pathname)
   }, [location.pathname])
+
+  // Actualiza headerTitle cuando currentPath cambie
+  useEffect(() => {
+    const pathTitleMap: { [key: string]: string } = {
+      '/': 'Dashboard',
+      '/search': 'Mapa de Talento',
+      '/convocatorias': 'Convocatorias',
+      '/profile': 'Tu Perfil',
+      '/login': 'Login'
+    }
+
+    setHeaderTitle(pathTitleMap[currentPath] || '')
+  }, [currentPath])
 
   // Redirige a /login si no hay userData y no está ya en /login
   useEffect(() => {
@@ -26,10 +42,12 @@ const App = () => {
 
   return (
     <>
-      <main className='p-5'>
+      <main className='lg:ml-[15%] p-5 pt-3 pb-24 lg:py-8 lg:px-10'>
+        <Header title={headerTitle} />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path='/search' element={<Search />} />
+          <Route path='/convocatorias' element={<Convocatorias />} />
         </Routes>
       </main>
       <Modal></Modal>

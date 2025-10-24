@@ -1,14 +1,16 @@
 import { FaSearch } from "react-icons/fa"
-import Header from "../components/Header"
 import Input from "../components/Input"
 import TeacherCard from "../components/TeacherCard"
+import Subtitle from "../components/Subtitle"
+import { TbBulbFilled } from "react-icons/tb"
 
 const Search = () => {
   return (
     <div>
-      <Header title="Perfiles" />
-      <Input icon={<FaSearch />} placeholder="Buscar perfiles y convocatorias..." className="mb-4 mt-4" />
-      <b>Perfiles Recomendados</b>
+      <Input icon={<FaSearch className="w-full h-full" />} placeholder="Buscar perfiles y convocatorias..." className="mt-4" />
+      <Subtitle icon={<TbBulbFilled className="w-full h-full" />}>
+        Perfiles Recomendados
+      </Subtitle>
       <TeacherCard id={1} />
     </div>
   )

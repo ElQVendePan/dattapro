@@ -18,8 +18,8 @@ const Input = ({ type, icon, label, placeholder, className }: InputProps) => {
     return (
         <div>
             {label && <label className={`block mb-2 font-semibold ${className}`}>{label}</label>}
-            <div className={`bg-bg-secondary p-4 rounded-xl flex items-center gap-3 ${className}`}>
-                {icon && <div className='w-5 h-5 flex opacity-70'>
+            <div className={`bg-bg-secondary p-4 rounded-xl flex items-center gap-4 ${className}`}>
+                {icon && <div className='w-5 h-5 flex opacity-50'>
                     {icon}
                 </div>}
                 <input type={inputType} placeholder={placeholder} className='bg-transparent outline-none flex-1' />

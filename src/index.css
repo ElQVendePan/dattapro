@@ -1,12 +1,33 @@
 @import "tailwindcss";
 
+:root {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F5F5F5;
+    --bg-third: #E0E0E0;
+    --text-color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #121212;
+        --bg-secondary: #242424;
+        --bg-third: #363636;
+        --text-color: #FFFFFF;
+    }
+}
+
 @theme {
     --color-primary: #199ED8;
-    --color-bg-secondary: #F5F5F5;
+    --color-bg-primary: var(--bg-primary);
+    --color-bg-secondary: var(--bg-secondary);
+    --color-bg-third: var(--bg-third);
+    --color-text: var(--text-color);
 }
 
 body {
     font-family: "lato", sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-color);
 }
 
 h1, h2, h3, h4, h5, h6, button, label {
