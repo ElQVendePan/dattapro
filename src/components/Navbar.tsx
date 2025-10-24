@@ -21,12 +21,12 @@ const NavbarItem = ({ icon, active, text }: { icon: React.ReactNode, active?: bo
 
 const Navbar = ({ currentPath }: { currentPath: string }) => {
   return (
-    <div className='bg-bg-primary p-4 fixed bottom-0 w-full lg:w-[15%] lg:h-screen'>
+    <div className='bg-bg-primary p-4 fixed bottom-0 w-full lg:w-[18%] lg:h-screen'>
       {/* solo visible en desktop */}
       <hr className='border-none w-0.5 rounded-full h-full absolute right-0 top-0 bg-bg-secondary' />
       <div className='ml-6 mt-6 mb-8 hidden lg:inline-block'>
-        <img src="/dattapro-logo.svg" alt="Logo" className='dark:hidden w-48' />
-        <img src="/dattapro-logo-white.svg" alt="Logo" className='hidden dark:inline-block w-48' />
+        <img src="/dattapro-logo.svg" alt="Logo" className='dark:hidden h-11' />
+        <img src="/dattapro-logo-white.svg" alt="Logo" className='hidden dark:inline-block h-11' />
       </div>
       <div className='grid grid-cols-4 lg:grid-cols-1 gap-1'>
         <Link to='/'>

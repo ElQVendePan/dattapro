@@ -42,7 +42,7 @@ const App = () => {
 
   return (
     <>
-      <main className='lg:ml-[15%] p-5 pt-3 pb-24 lg:py-8 lg:px-10'>
+      <main className='lg:ml-[18%] p-5 pt-3 pb-24 lg:py-8 lg:px-10'>
         <Header title={headerTitle} />
         <Routes>
           <Route path="/login" element={<Login />} />
