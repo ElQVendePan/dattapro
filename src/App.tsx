@@ -42,13 +42,15 @@ const App = () => {
 
   return (
     <>
-      <main className='lg:ml-[18%] p-5 pt-3 pb-24 lg:py-8 lg:px-10'>
-        <Header title={headerTitle} />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='/convocatorias' element={<Convocatorias />} />
-        </Routes>
+      <main className='lg:ml-[18%] p-5 pb-24 lg:py-8 lg:px-10'>
+        <div className='lg:max-w-6xl lg:mx-auto'>
+          <Header title={headerTitle} />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='/convocatorias' element={<Convocatorias />} />
+          </Routes>
+        </div>
       </main>
       <Modal></Modal>
 

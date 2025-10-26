@@ -50,36 +50,22 @@ const Convocatorias = () => {
     return (
         <>
             <Input icon={<FaSearch className="w-full h-full" />} placeholder="Buscar perfiles y convocatorias..." className="mt-4" />
-            <div className="flex gap-6 mt-6 relative">
+            <div className="flex gap-5 mt-6 relative">
                 {/* Columna de convocatorias */}
-                <div className="w-[30%] grid grid-cols-1 gap-4">
+                <div className="lg:w-[40%] grid grid-cols-1 gap-6">
                     {convocatoriasData.map((convocatoria) => (
-                        <div
-                            key={convocatoria.id}
-                            className="bg-bg-secondary p-5 rounded-xl relative overflow-hidden"
-                        >
-                            <div className="absolute w-full h-36 top-0 left-0 overflow-hidden">
-                                <img
-                                    src={convocatoria.imagenFondo}
-                                    className="w-full h-full object-cover opacity-50"
-                                    alt={convocatoria.titulo}
-                                />
-                                <div className="bg-gradient-to-t from-bg-secondary to-transparent absolute bottom-0 left-0 h-full w-full" />
+                        <div key={convocatoria.id} className="bg-bg-secondary p-5 rounded-2xl relative overflow-hidden">
+                            <div className="absolute w-full h-30 top-0 left-0 overflow-hidden">
+                                <img src={convocatoria.imagenFondo} className="w-full h-full object-cover" alt={convocatoria.titulo} />
                                 <span className="p-0.5 px-3 absolute top-3 right-3 inline-block rounded-full text-xs bg-[#f4fcff] border-2 border-primary text-primary">
                                     {convocatoria.categoria}
                                 </span>
                             </div>
                             <div className="relative">
-                                <div className="flex items-end justify-between">
-                                    <div className="w-16 h-16 mt-16 rounded-xl border-2 border-bg-third overflow-hidden">
-                                        <img
-                                            src={convocatoria.imagenLogo}
-                                            className="w-full h-full"
-                                            alt={`${convocatoria.categoria} logo`}
-                                        />
-                                    </div>
+                                <div className="w-16 h-16 mt-17 rounded-xl border-2 border-bg-third overflow-hidden">
+                                    <img src={convocatoria.imagenLogo} className="w-full h-full" alt={`${convocatoria.categoria} logo`} />
                                 </div>
-                                <h3 className="font-bold text-lg mt-6">{convocatoria.titulo}</h3>
+                                <h3 className="font-bold text-lg mt-4">{convocatoria.titulo}</h3>
                                 <p className="mt-4 text-sm line-clamp-3 opacity-80">
                                     {convocatoria.descripcion}
                                 </p>
@@ -92,13 +78,26 @@ const Convocatorias = () => {
                     ))}
                 </div>
                 {/* Panel de detalles con sticky */}
-                <div className="flex-1">
-                    <div className="bg-bg-secondary p-6 rounded-xl sticky top-4 overflow-auto h-[calc(100vh-48px)]">
-                        {/* Ajusta top según la altura de los elementos superiores */}
-                        <h2 className="font-bold text-xl mb-4">Detalles de la convocatoria</h2>
-                        <p className="opacity-80">
-                            Selecciona una convocatoria para ver más información aquí.
-                        </p>
+                <div className="flex-1 fixed top-0 left-0 w-full hidden lg:relative lg:block">
+                    <div className="bg-bg-secondary p-6 rounded-2xl sticky top-6 overflow-auto h-[calc(100vh-3rem)]">
+                        <div className="w-full h-48 absolute top-0 left-0">
+                            <img src="https://si.se/app/uploads/2017/10/dsc5034_nyhet-4-1650x1100.jpg" className="w-full h-full object-cover opacity-70" alt="" />
+                            <div className="bg-gradient-to-t from-bg-secondary to-transparent absolute bottom-0 left-0 h-[200%] w-full" />
+                        </div>
+                        <div className="relative mt-30">
+                            <div className="flex items-center gap-4">
+                                <div className="w-24 h-24 rounded-2xl border-2 border-bg-third overflow-hidden flex-shrink-0">
+                                    <img
+                                        src="https://culture360.asef.org/media/2011/5/Swedish_Institute.jpeg"
+                                        className="w-full h-full object-cover"
+                                        alt="Swedish Institute logo"
+                                    />
+                                </div>
+                                <h2 className="font-bold text-xl leading-snug">
+                                    Swedish Institute Scholarships: becas para profesionales globales 2026
+                                </h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
