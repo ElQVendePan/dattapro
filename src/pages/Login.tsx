@@ -21,7 +21,7 @@ const Login = () => {
   return (
     <>
       <div className='fixed top-0 left-0 w-full h-full overflow-hidden'>
-        <img src="/dattapro-icon-white.svg" className='w-12 absolute top-5 left-5' alt='' />
+        <img src="/dattapro-icon-white.svg" className='w-10 absolute top-5 left-5' alt='' />
         <video src="/blue-animation.mp4" className='w-full h-full object-cover' autoPlay muted></video>
       </div>
       <div className='absolute left-0 bottom-0 p-5 bg-bg-primary rounded-t-3xl'>

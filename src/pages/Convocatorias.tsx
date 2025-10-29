@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { FaSearch } from "react-icons/fa"
 import Input from "../components/Input"
 import ConvocatoriaCard from "../components/ConvocatoriaCard"
