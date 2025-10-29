@@ -3,7 +3,7 @@
 :root {
     --bg-primary: #FFFFFF;
     --bg-secondary: #F5F5F5;
-    --bg-third: #E0E0E0;
+    --bg-third: #E8E8E8;
     --text-color: #000000;
 }
 
@@ -32,4 +32,33 @@ body {
 
 h1, h2, h3, h4, h5, h6, button, label {
     font-family: "montserrat", sans-serif;
+}
+
+/* Minimalist scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-thumb {
+        background: #444444;
+    }
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #cccccc transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+    * {
+        scrollbar-color: #444444 transparent;
+    }
 }

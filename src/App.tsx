@@ -22,15 +22,20 @@ const App = () => {
 
   // Actualiza headerTitle cuando currentPath cambie
   useEffect(() => {
-    const pathTitleMap: { [key: string]: string } = {
-      '/': 'Dashboard',
+    const pathTitleMap: Record<string, string> = {
       '/search': 'Mapa de Talento',
       '/convocatorias': 'Convocatorias',
       '/profile': 'Tu Perfil',
-      '/login': 'Login'
+      '/login': 'Login',
+      '/': 'Dashboard',
     }
 
-    setHeaderTitle(pathTitleMap[currentPath] || '')
+    const matchedTitle =
+      Object.entries(pathTitleMap)
+        .filter(([path]) => path !== '/')
+        .find(([path]) => currentPath.startsWith(path))?.[1] ||
+      (currentPath === '/' ? 'Dashboard' : '')
+    setHeaderTitle(matchedTitle)
   }, [currentPath])
 
   // Redirige a /login si no hay userData y no está ya en /login
@@ -42,19 +47,18 @@ const App = () => {
 
   return (
     <>
-      <main className='lg:ml-[18%] p-5 pb-24 lg:py-8 lg:px-10'>
-        <div className='lg:max-w-6xl lg:mx-auto'>
-          <Header title={headerTitle} />
+      <main className='lg:ml-[18%] p-5 pb-24 lg:py-8 lg:px-10 select-none'>
+        <div className='lg:max-w-7xl lg:mx-auto'>
+          {currentPath !== '/login' && <Header title={headerTitle} />}
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path='/search' element={<Search />} />
             <Route path='/convocatorias' element={<Convocatorias />} />
+            <Route path="/convocatorias/:id" element={<Convocatorias />} />
           </Routes>
         </div>
       </main>
       <Modal></Modal>
-
-      {/* Solo renderiza el Navbar si NO está en /login */}
       {currentPath !== '/login' && <Navbar currentPath={currentPath} />}
     </>
   )
