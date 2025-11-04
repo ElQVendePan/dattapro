@@ -3,7 +3,7 @@ import { IoCalendarClearOutline } from "react-icons/io5"
 type ConvocatoriaCardProps = {
     convocatoria: {
         imagenFondo: string;
-        imagenLogo: string;
+        entidadLogo: string;
         titulo: string;
         categoria: string;
         descripcion: string;
@@ -25,7 +25,7 @@ const ConvocatoriaCard = ({ convocatoria, onSelect, isSelected }: ConvocatoriaCa
             </div>
             <div className="relative">
                 <div className="w-16 h-16 rounded-xl border-2 border-bg-third overflow-hidden">
-                    <img src={convocatoria.imagenLogo} className="w-full h-full" alt={`${convocatoria.categoria} logo`} />
+                    <img src={convocatoria.entidadLogo} className="w-full h-full bg-white" alt={`${convocatoria.categoria} logo`} />
                 </div>
                 <h3 className="font-bold text-lg mt-4">{convocatoria.titulo}</h3>
                 <p className="mt-4 text-sm line-clamp-3 opacity-80">

@@ -13,7 +13,7 @@ interface Convocatoria {
     descripcion: string
     fechaLimite: string
     imagenFondo: string
-    imagenLogo: string
+    entidadLogo: string
 }
 
 const API_URL = import.meta.env.VITE_API_BASE_URL
