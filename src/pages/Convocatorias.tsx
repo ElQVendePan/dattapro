@@ -11,6 +11,7 @@ interface Convocatoria {
     titulo: string
     categoria: string
     descripcion: string
+    fechaInicio: string
     fechaLimite: string
     imagenFondo: string
     entidadLogo: string
@@ -27,7 +28,6 @@ const Convocatorias = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    // 🔹 Obtener todas las convocatorias
     useEffect(() => {
         const fetchConvocatorias = async () => {
             try {
@@ -44,7 +44,6 @@ const Convocatorias = () => {
         fetchConvocatorias()
     }, [])
 
-    // 🔹 Sincronizar selected con el parámetro de la URL
     useEffect(() => {
         if (id) {
             setSelected(Number(id))
@@ -60,7 +59,6 @@ const Convocatorias = () => {
     if (loading) return <p className="mt-6 text-center text-gray-500">Cargando convocatorias...</p>
     if (error) return <p className="mt-6 text-center text-red-500">{error}</p>
 
-    // 🔹 Buscar la convocatoria seleccionada para el detalle
     const selectedConvocatoria = convocatorias.find((c) => c.id == selected)
 
     return (

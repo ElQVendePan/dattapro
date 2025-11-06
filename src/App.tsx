@@ -47,7 +47,7 @@ const App = () => {
 
   return (
     <>
-      <main className='lg:ml-[18%] p-5 pb-24 lg:py-8 lg:px-10 select-none'>
+      <main className='lg:ml-[18%] p-5 pb-24 lg:py-8 lg:px-10 select-none lg:select-auto'>
         <div className='lg:max-w-7xl lg:mx-auto'>
           {currentPath !== '/login' && <Header title={headerTitle} />}
           <Routes>
