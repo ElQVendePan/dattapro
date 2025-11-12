@@ -5,6 +5,8 @@ import Input from "../components/Input"
 import ConvocatoriaCard from "../components/ConvocatoriaCard"
 import ConvocatoriaDetalle from "../components/ConvocatoriaDetalle"
 import { useNavigate, useParams } from "react-router-dom"
+import Header from "../components/Header"
+import { Link } from "react-router-dom";
 
 interface Convocatoria {
     id: number
@@ -54,6 +56,7 @@ const Convocatorias = () => {
 
     const handleSelect = (convocatoriaId: number): void => {
         navigate(`/convocatorias/${convocatoriaId}`)
+        window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
     if (loading) return <p className="mt-6 text-center text-gray-500">Cargando convocatorias...</p>
@@ -61,37 +64,38 @@ const Convocatorias = () => {
 
     const selectedConvocatoria = convocatorias.find((c) => c.id == selected)
 
+    if (selectedConvocatoria) {
+        return (
+            <>
+                <Header hasBack title="Convocatoria"></Header>
+                <ConvocatoriaDetalle convocatoria={selectedConvocatoria} />
+            </>
+        )
+    }
+
     return (
         <>
-            <Input
-                icon={<FaSearch className="w-full h-full" />}
-                placeholder="Buscar perfiles y convocatorias..."
-                className="mt-4"
-            />
-
+            <Header title="Convocatorias"></Header>
+            <Input icon={<FaSearch className="w-full h-full" />} placeholder="Buscar perfiles y convocatorias..." className="mt-16" />
             <div className="flex gap-5 mt-6 relative">
                 {/* Lista de convocatorias */}
-                <div
-                    className={`${selected ? "lg:w-[32%] grid-cols-1" : "w-full grid-cols-1 lg:grid-cols-3"} grid gap-6 items-start self-start`}
-                >
+                <div className={`grid grid-cols-1 lg:grid-cols-3 gap-6 items-start self-start`} >
                     {convocatorias.map((convocatoria) => {
                         return (
-                            <ConvocatoriaCard
+                            <Link
                                 key={convocatoria.id}
-                                convocatoria={convocatoria}
-                                onSelect={() => handleSelect(convocatoria.id)}
-                                isSelected={selected == convocatoria.id}
-                            />
+                                to={`/convocatorias/${convocatoria.id}`}
+                                onClick={() => window.scrollTo({ top: 0 })}
+                            >
+                                <ConvocatoriaCard
+                                    key={convocatoria.id}
+                                    convocatoria={convocatoria}
+                                    isSelected={selected == convocatoria.id}
+                                />
+                            </Link>
                         );
                     })}
                 </div>
-
-                {/* Panel de detalles */}
-                {selectedConvocatoria && (
-                    <div className="flex-1 fixed top-0 left-0 w-full lg:relative lg:block">
-                        <ConvocatoriaDetalle convocatoria={selectedConvocatoria} />
-                    </div>
-                )}
             </div>
         </>
     )

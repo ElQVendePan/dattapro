@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import Button from './Button'
-import { TiWarning } from 'react-icons/ti'
 import { useModal } from '../hook/useModal'
+import RedirectModal from '../modals/RedirectModal'
+import Test from '../modals/test'
 
 const Modal = () => {
     const startY = useRef<number | null>(null)
@@ -9,7 +9,7 @@ const Modal = () => {
     const [translateY, setTranslateY] = useState(0)
     const [isDragging, setIsDragging] = useState(false)
     const [isClosing, setIsClosing] = useState(false)
-    const { isOpen } = useModal()
+    const { isOpen, modalContent } = useModal()
 
     // Evitar scroll del fondo mientras el modal está abierto
     useEffect(() => {
@@ -61,9 +61,9 @@ const Modal = () => {
     }
 
     return (
-        <div className={`fixed inset-0 flex items-center justify-center bg-black/15 backdrop-blur-lg transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className={`z-50 fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-xl transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             <div
-                className={`absolute bottom-0 w-full px-4 pt-3 pb-8 bg-white rounded-t-3xl transition-all duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                className={`absolute bottom-0 w-full px-4 pt-3 pb-8 bg-bg-primary rounded-t-3xl transition-all duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 style={{
                     transform: `translate3d(0, ${isOpen || isClosing ? translateY : 60}px, 0)`,
                     transition: isDragging ? 'none' : 'transform 0.35s ease, opacity 0.25s ease',
@@ -73,17 +73,16 @@ const Modal = () => {
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
             >
-                <hr className={`h-1 rounded-full bg-black mx-auto mb-6 border-none transition-all ${isDragging ? 'w-14 opacity-50' : 'w-12 opacity-20'}`} />
-                <div className='w-16 h-16 text-primary mx-auto mb-3'>
-                    <TiWarning className='w-full h-full' />
-                </div>
-                <h2 className='text-center text-lg font-semibold mb-2'>Prueba de modal</h2>
-                <p className='text-center text-neutral-500'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque aliquam odio et faucibus.
-                </p>
-                <div className='mt-6 grid grid-cols-2 gap-4'>
-                    <Button onClick={closeModalSmoothly}>Cancelar</Button>
-                    <Button primary onClick={closeModalSmoothly}>Aceptar</Button>
+                <hr className={`h-1 rounded-full bg-bg-primary invert mx-auto mb-8 border-none transition-all ${isDragging ? 'w-14 opacity-50' : 'w-12 opacity-20'}`} />
+                <div className='text-center'>
+                    {(() => {
+                        switch (modalContent) {
+                            case 'redirect':
+                                return <RedirectModal />;
+                            default:
+                                return <Test />;
+                        }
+                    })()}
                 </div>
             </div>
         </div>

@@ -1,8 +1,8 @@
-import { FaLock, FaUser } from 'react-icons/fa'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import { useModal } from '../hook/useModal';
-import { useUserStore } from '../store/useUserStore'
+import { useUserStore } from '../store/useUserStore';
+import { FaLock, FaUser } from 'react-icons/fa';
 
 const Login = () => {
 
@@ -18,32 +18,26 @@ const Login = () => {
       email: 'daniel@example.com',
     })
   }
+
   return (
     <>
       <div className='fixed top-0 left-0 w-full h-full overflow-hidden'>
-        <img src="/dattapro-icon-white.svg" className='w-10 absolute top-5 left-5' alt='' />
-        <video src="/blue-animation.mp4" className='w-full h-full object-cover' autoPlay muted></video>
+        <video src="/blue-animation.mp4" className='w-full h-full object-cover brightness-50' autoPlay muted></video>
+        <img src="/dattapro-icon-white.svg" className='w-9 absolute top-5 left-5' alt='' />
       </div>
-      <div className='absolute left-0 bottom-0 p-5 bg-bg-primary rounded-t-3xl'>
+      <div className='absolute left-0 bottom-0 p-5'>
         <div className='mb-8'>
           {/* <img src="/dattapro-icon.svg" className='w-10 inline-block mt-5 mb-12' alt='' /> */}
-          <h1 className='font-bold text-2xl mt-3'>Bienvenido a Dattapro</h1>
-          <p className='font-medium mt-1 opacity-50'>Un espacio creado para fortalecer el vínculo entre docentes, talento y oportunidades.</p>
+          <h1 className='font-bold text-4xl mt-3'>Bienvenido a Dattapro</h1>
+          <p className='font-medium mt-1 opacity-70'>Un espacio creado para fortalecer el vínculo entre docentes, talento y oportunidades.</p>
+          <hr className='bg-neutral-300 w-1/5 h-0.5 rounded-full border-none mt-3' />
+          <div className='grid grid-cols-1 gap-4 mt-8'>
+            <Input className='border-neutral-400 bg-white/10' label='Usuario' placeholder='Escribe tu usuario' icon={<FaUser className='w-full h-full' />} />
+            <Input className='border-neutral-400 bg-white/10' type='password' label='Contraseña' placeholder='Escribe tu contraseña' icon={<FaLock className='w-full h-full' />} />
+            <span className='text-right text-sm opacity-60'>¿Olvidaste tu contraseña?</span>
+            <Button primary onClick={handleLogin}>Iniciar sesión</Button>
+          </div>
         </div>
-        <div className='grid grid-cols-1 gap-4'>
-          <Input label='Usuario' placeholder='Escribe tu usuario' icon={<FaUser className='w-full h-full' />} />
-          <Input type='password' label='Contraseña' placeholder='Escribe tu contraseña' icon={<FaLock className='w-full h-full' />} />
-          <span className='text-right text-sm opacity-60'>¿Olvidaste tu contraseña?</span>
-          <Button primary onClick={handleLogin}>Iniciar sesión</Button>
-        </div>
-        {/* <div className="flex items-center justify-center my-2">
-          <hr className="w-full h-0.5 rounded-full bg-neutral-200 border-none mr-4"></hr>
-          <span className="opacity-50">o</span>
-          <hr className="w-full h-0.5 rounded-full bg-neutral-200 border-none ml-4"></hr>
-        </div> */}
-        <span className="block text-xs text-center opacity-60 mt-8 mb-4">
-          Al iniciar sesión, aceptas nuestros <span className="text-primary underline" onClick={openModal}>Términos de servicio</span> y <span className="text-primary underline" onClick={openModal}>Política de privacidad</span>.
-        </span>
       </div>
     </>
   )

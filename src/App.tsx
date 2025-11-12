@@ -1,65 +1,61 @@
-import { Route, Routes, useLocation } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import Login from './pages/Login'
-import { useUserStore } from './store/useUserStore'
+import Navbar from './components/Navbar'
 import Modal from './components/Modal'
+import Signup from './pages/Signup'
 import Search from './pages/Search'
 import Convocatorias from './pages/Convocatorias'
-import Header from './components/Header'
+import { useUserStore } from './store/useUserStore'
+import Login from './pages/Login'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('/')
-  const [headerTitle, setHeaderTitle] = useState('')
   const location = useLocation()
+  const navigate = useNavigate()
+  const { userData, clearUserData } = useUserStore()
 
-  const { userData } = useUserStore()
+  const handleLogout = () => {
+    clearUserData()
+    navigate('/welcome', { replace: true })
+  }
 
-  // Actualiza currentPath cuando location.pathname cambie
+  // Actualiza currentPath
   useEffect(() => {
     setCurrentPath(location.pathname)
   }, [location.pathname])
 
-  // Actualiza headerTitle cuando currentPath cambie
+  // Redirección condicional
   useEffect(() => {
-    const pathTitleMap: Record<string, string> = {
-      '/search': 'Mapa de Talento',
-      '/convocatorias': 'Convocatorias',
-      '/profile': 'Tu Perfil',
-      '/login': 'Login',
-      '/': 'Dashboard',
-    }
+    const publicPaths = ['/login', '/signup']
+    const isPublic = publicPaths.includes(location.pathname)
 
-    const matchedTitle =
-      Object.entries(pathTitleMap)
-        .filter(([path]) => path !== '/')
-        .find(([path]) => currentPath.startsWith(path))?.[1] ||
-      (currentPath === '/' ? 'Dashboard' : '')
-    setHeaderTitle(matchedTitle)
-  }, [currentPath])
-
-  // Redirige a /login si no hay userData y no está ya en /login
-  useEffect(() => {
-    if (!userData && location.pathname !== '/login') {
-      window.location.href = `${import.meta.env.VITE_PAGE_URL}login`
+    if (userData && isPublic) {
+      // 🔒 Usuario logueado intentando acceder a páginas públicas
+      navigate('/home', { replace: true })
+    } else if (!userData && !isPublic) {
+      // 🔐 Usuario no logueado intentando acceder a páginas privadas
+      navigate('/login', { replace: true })
     }
-  }, [userData, location.pathname])
+  }, [userData, location.pathname, navigate])
 
   return (
     <>
-      <main className='lg:ml-[18%] p-5 pb-24 lg:py-8 lg:px-10 select-none lg:select-auto'>
-        <div className='lg:max-w-7xl lg:mx-auto'>
-          {currentPath !== '/login' && <Header title={headerTitle} />}
+      <main className="lg:ml-[18%] p-5 pb-24 lg:py-8 lg:px-10 select-none lg:select-auto">
+        <div className="lg:max-w-7xl lg:mx-auto">
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path='/search' element={<Search />} />
-            <Route path='/convocatorias' element={<Convocatorias />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/convocatorias" element={<Convocatorias />} />
             <Route path="/convocatorias/:id" element={<Convocatorias />} />
+            <Route path="/home" element={<div onClick={handleLogout}>Cerrar sesion</div>} />
           </Routes>
         </div>
       </main>
-      <Modal></Modal>
-      {currentPath !== '/login' && <Navbar currentPath={currentPath} />}
+
+      <Modal />
+
+      {currentPath !== '/login' && currentPath !== '/signup' && currentPath !== '/welcome' && <Navbar currentPath={currentPath} />}
     </>
   )
 }

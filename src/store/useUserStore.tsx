@@ -1,29 +1,35 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-// Definimos el tipo de los datos del usuario
 interface UserData {
   id?: string
   name?: string
   email?: string
-  // puedes agregar más campos según necesites
+  // otros campos opcionales
 }
 
-// Definimos el tipo del estado global
 interface UserStore {
   userData: UserData | null
-  setUserData: (data: UserData | null) => void
+  setUserData: (data: UserData) => void
+  clearUserData: () => void
 }
 
-// Creamos el store persistente
 export const useUserStore = create<UserStore>()(
   persist(
     (set) => ({
       userData: null,
+
+      // Guarda los datos del usuario (sin redirigir desde aquí)
       setUserData: (data) => {
-        console.log('Setting user data:', data)
+        console.log('✅ Usuario autenticado:', data)
         set({ userData: data })
-        window.location.href = `${import.meta.env.VITE_PAGE_URL}search`
+      },
+
+      // Limpia los datos y cierra sesión
+      clearUserData: () => {
+        console.log('🚪 Cerrando sesión...')
+        set({ userData: null })
+        localStorage.removeItem('user-store')
       },
     }),
     {

@@ -29,16 +29,17 @@ const Navbar = ({ currentPath }: { currentPath: string }) => {
   }
 
   return (
-    <div className='bg-bg-primary p-4 fixed bottom-0 w-full lg:w-[16%] lg:h-screen'>
+    <div className='fixed bottom-5 p-2 w-4/5 left-[10%] lg:left-auto bg-bg-primary/25 backdrop-blur-xl border-1 border-bg-third lg:border-0 lg:bg-bg-primary lg:p-4 lg:bottom-0 lg:w-[16%] lg:h-screen rounded-full lg:rounded-none'>
       {/* solo visible en desktop */}
-      <hr className='border-none w-0.5 rounded-full h-full absolute right-0 top-0 bg-bg-secondary' />
+      <hr className='border-none w-0.5 rounded-full h-full hidden lg:visible absolute right-0 top-0 bg-bg-secondary' />
       <div className='ml-6 mt-6 mb-8 hidden lg:inline-block'>
         <img src='/dattapro-logo.svg' alt='Logo' className='dark:hidden w-[80%]' />
         <img src='/dattapro-logo-white.svg' alt='Logo' className='hidden dark:inline-block w-[80%]' />
       </div>
+      {/* Navbar items */}
       <div className='grid grid-cols-4 lg:grid-cols-1 gap-1'>
-        <Link to='/'>
-          <NavbarItem text='Dashboard' icon={<RiHome6Fill />} active={isActive('/')} />
+        <Link to='/home'>
+          <NavbarItem text='Dashboard' icon={<RiHome6Fill />} active={isActive('/home')} />
         </Link>
         <Link to='/search'>
           <NavbarItem text='Mapa de Talento' icon={<BsFillPeopleFill />} active={isActive('/search')} />
@@ -50,7 +51,7 @@ const Navbar = ({ currentPath }: { currentPath: string }) => {
           <NavbarItem text='Tu Perfil' icon={<IoPersonCircleSharp />} active={isActive('/profile')} />
         </Link>
       </div>
-    </div>
+    </div >
   )
 }
 
