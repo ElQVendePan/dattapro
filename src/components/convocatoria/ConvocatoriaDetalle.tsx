@@ -1,10 +1,9 @@
 import { FaAward, FaCalendar, FaMoneyBill, FaShareAlt } from "react-icons/fa";
 import { HiMiniBookOpen } from "react-icons/hi2";
-import Button from "./Button";
+import Button from "../Button";
 import { HiExternalLink } from "react-icons/hi";
 import { IoBookmark } from "react-icons/io5";
 import { type ReactNode } from "react";
-import { GoGoal } from "react-icons/go";
 
 type Convocatoria = {
     imagenFondo: string;
@@ -92,11 +91,8 @@ const ConvocatoriaDetalle = ({ convocatoria }: ConvocatoriaDetalleProps) => {
                         <Button primary className="w-full" icon={<HiExternalLink className="w-full h-full" />}>Ver Enlace</Button>
                     </a>
                 </div>
-                {/* Descripción */}
                 <h2 className="font-bold">Objetivo de la Convocatoria</h2>
                 <p className="opacity-70 mt-4">{convocatoria.descripcion}</p>
-
-                {/* Info adicional (ya no usa grid, usa flex rows con InfoRow) */}
                 <div className="mt-6">
                     {convocatoria.criteriosParticipacion && (
                         <InfoRow icon={<HiMiniBookOpen className="w-1/2 h-1/2" />} label="Criterios de Participación" value={convocatoria.criteriosParticipacion} />

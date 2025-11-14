@@ -10,18 +10,10 @@ interface InputProps {
     name?: string;
     value?: string;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    [key: string]: any;
 }
 
-const Input = ({
-    type = 'text',
-    icon,
-    label,
-    placeholder,
-    className = '',
-    name,
-    value,
-    onChange,
-}: InputProps) => {
+const Input = ({type = 'text', icon, label, placeholder, className = '', name, value, onChange, ...props}: InputProps) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const isPassword = type === 'password';
@@ -41,6 +33,7 @@ const Input = ({
                     onChange={onChange}
                     placeholder={placeholder}
                     className="bg-transparent outline-none flex-1 text-base"
+                    {...props}
                 />
                 {isPassword && (
                     <div
