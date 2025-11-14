@@ -1,52 +1,79 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 type Teacher = {
   id: number;
-  nombre: string;
-  apellido: string;
+  nombres: string;
+  apellidos: string;
   foto: string;
-  areas: string[];
+  tipo_documento: string;
+  numero_identificacion: string;
+  correo_institucional: string;
+  tipo_vinculacion: string;
+  sede: string;
+  centro_investigativo: string | null;
+  programa_academico: string;
   facultad: string;
-  departamento: string;
 };
-
-// 🔹 Datos genéricos de ejemplo (mock data)
-const teachers: Teacher[] = [
-  {
-    id: 1,
-    nombre: "Laura",
-    apellido: "Martínez",
-    foto: "https://randomuser.me/api/portraits/women/44.jpg",
-    areas: ["Inteligencia Artificial", "Aprendizaje Automático", "Robótica"],
-    facultad: "Ingeniería",
-    departamento: "Computación",
-  },
-  {
-    id: 2,
-    nombre: "Carlos",
-    apellido: "Gómez",
-    foto: "https://randomuser.me/api/portraits/men/41.jpg",
-    areas: ["Educación", "Psicología Cognitiva"],
-    facultad: "Humanidades",
-    departamento: "Psicología",
-  },
-  {
-    id: 3,
-    nombre: "Ana",
-    apellido: "Rojas",
-    foto: "https://randomuser.me/api/portraits/women/68.jpg",
-    areas: ["Biotecnología", "Genética"],
-    facultad: "Ciencias Naturales",
-    departamento: "Biología",
-  },
-];
 
 interface TeacherCardProps {
   id: number;
 }
 
+const API_URL = import.meta.env.VITE_API_BASE_URL
+
 const TeacherCard: React.FC<TeacherCardProps> = ({ id }) => {
-  const teacher = teachers.find((t) => t.id === id);
+  const [teacher, setTeacher] = useState<Teacher | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+
+    const controller = new AbortController();
+
+    const fetchTeacher = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/usuarios/get-all-info-usuarios.php`, {
+          params: { id },
+          signal: controller.signal,
+        });
+
+        if (res.data.status === "success") {
+          setTeacher(res.data.data);
+        } else {
+          console.error("Error en respuesta:", res.data.message);
+        }
+      } catch (error) {
+        if (!axios.isCancel(error)) {
+          console.error("Error al obtener datos del usuario:", error);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTeacher();
+
+    return () => controller.abort();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="p-6 bg-[var(--color-bg-secondary)] border border-[var(--color-bg-third)] rounded-2xl shadow-sm animate-pulse">
+        <div className="flex items-center gap-4">
+          <div className="w-16 h-16 bg-gray-200 rounded-xl"></div>
+          <div className="flex-1 space-y-2">
+            <div className="h-4 bg-gray-200 rounded w-1/3"></div>
+            <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-4">
+          <div className="w-16 h-4 bg-gray-200 rounded"></div>
+          <div className="w-20 h-4 bg-gray-200 rounded"></div>
+        </div>
+      </div>
+    );
+  }
 
   if (!teacher) {
     return (
@@ -57,27 +84,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ id }) => {
   }
 
   return (
-    <div className="rounded-xl bg-bg-secondary border-1 border-bg-third p-4">
-      <div className="flex items-center">
-        <img src={teacher.foto} alt={teacher.nombre} className="w-16 h-16 rounded-xl object-cover" />
-        <div className="w-full pl-4">
-          <h3 className="text-lg font-semibold">{teacher.nombre}</h3>
-          <span className="text-gray-500 font-normal">{teacher.apellido}</span>
-          <p className="text-sm text-gray-600">
-            {teacher.facultad} —{" "}
-            <span className="text-gray-500">{teacher.departamento}</span>
-          </p>
-        </div>
-      </div>
-      <div>
-        <div className="flex flex-wrap justify-center gap-2 mt-3">
-          {teacher.areas.map((area, i) => (
-            <span key={i} className="bg-blue-50 text-blue-700 text-xs font-medium px-2 py-1 rounded-full" >
-              {area}
-            </span>
-          ))}
-        </div>
-      </div>
+    <div className="rounded-2xl bg-bg-secondary duration-300">
     </div>
   );
 };

@@ -10,8 +10,8 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --bg-primary: #121212;
-        --bg-secondary: #242424;
-        --bg-third: #363636;
+        --bg-secondary: #171717;
+        --bg-third: #212121;
         --text-color: #FFFFFF;
     }
 }

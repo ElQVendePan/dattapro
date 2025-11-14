@@ -1,7 +1,6 @@
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { HiMegaphone } from 'react-icons/hi2'
-import { IoPersonCircleSharp } from 'react-icons/io5'
-import { RiHome6Fill } from 'react-icons/ri'
+import { IoPersonCircleSharp, IoSearchSharp } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 
 const NavbarItem = ({ icon, active, text }: { icon: React.ReactNode; active?: boolean; text: string }) => {
@@ -38,14 +37,14 @@ const Navbar = ({ currentPath }: { currentPath: string }) => {
       </div>
       {/* Navbar items */}
       <div className='grid grid-cols-4 lg:grid-cols-1 gap-1'>
-        <Link to='/home'>
-          <NavbarItem text='Dashboard' icon={<RiHome6Fill />} active={isActive('/home')} />
-        </Link>
-        <Link to='/search'>
-          <NavbarItem text='Mapa de Talento' icon={<BsFillPeopleFill />} active={isActive('/search')} />
+        <Link to='/mapa-talento'>
+          <NavbarItem text='Mapa de Talento' icon={<BsFillPeopleFill />} active={isActive('/mapa-talento')} />
         </Link>
         <Link to='/convocatorias'>
           <NavbarItem text='Convocatorias' icon={<HiMegaphone />} active={isActive('/convocatorias')} />
+        </Link>
+        <Link to='/busqueda'>
+          <NavbarItem text='Dashboard' icon={<IoSearchSharp />} active={isActive('/busqueda')} />
         </Link>
         <Link to='/profile'>
           <NavbarItem text='Tu Perfil' icon={<IoPersonCircleSharp />} active={isActive('/profile')} />

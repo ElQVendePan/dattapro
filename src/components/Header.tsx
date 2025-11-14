@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ title, hasBack = false }) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 10);
+            setScrolled(window.scrollY > 50);
         };
 
         window.addEventListener("scroll", handleScroll);

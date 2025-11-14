@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Modal from './components/Modal'
 import Signup from './pages/Signup'
-import Search from './pages/Search'
 import Convocatorias from './pages/Convocatorias'
 import { useUserStore } from './store/useUserStore'
 import Login from './pages/Login'
+import PerfilProfesional from './components/PerfilProfesional'
+import MapaTalento from './pages/MapaTalento'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('/')
@@ -40,15 +41,17 @@ const App = () => {
 
   return (
     <>
-      <main className="lg:ml-[18%] p-5 pb-24 lg:py-8 lg:px-10 select-none lg:select-auto">
+      <main className="lg:ml-[18%] p-5 lg:py-8 lg:px-10 select-none lg:select-auto">
         <div className="lg:max-w-7xl lg:mx-auto">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/search" element={<Search />} />
+            <Route path="/signup/:id" element={<Signup />} />
+            <Route path="/perfil-profesional" element={<PerfilProfesional />} />
+            <Route path="/mapa-talento" element={<MapaTalento />} />
             <Route path="/convocatorias" element={<Convocatorias />} />
             <Route path="/convocatorias/:id" element={<Convocatorias />} />
-            <Route path="/home" element={<div onClick={handleLogout}>Cerrar sesion</div>} />
+            <Route path="/busqueda" element={<div onClick={handleLogout}>Cerrar sesion</div>} />
           </Routes>
         </div>
       </main>

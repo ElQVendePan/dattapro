@@ -4,7 +4,7 @@ import axios from "axios"
 import Input from "../components/Input"
 import ConvocatoriaCard from "../components/ConvocatoriaCard"
 import ConvocatoriaDetalle from "../components/ConvocatoriaDetalle"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import Header from "../components/Header"
 import { Link } from "react-router-dom";
 
@@ -22,7 +22,6 @@ interface Convocatoria {
 const API_URL = import.meta.env.VITE_API_BASE_URL
 
 const Convocatorias = () => {
-    const navigate = useNavigate()
     const { id } = useParams()
 
     const [convocatorias, setConvocatorias] = useState<Convocatoria[]>([])
@@ -54,11 +53,6 @@ const Convocatorias = () => {
         }
     }, [id])
 
-    const handleSelect = (convocatoriaId: number): void => {
-        navigate(`/convocatorias/${convocatoriaId}`)
-        window.scrollTo({ top: 0, behavior: "smooth" })
-    }
-
     if (loading) return <p className="mt-6 text-center text-gray-500">Cargando convocatorias...</p>
     if (error) return <p className="mt-6 text-center text-red-500">{error}</p>
 
@@ -77,7 +71,7 @@ const Convocatorias = () => {
         <>
             <Header title="Convocatorias"></Header>
             <Input icon={<FaSearch className="w-full h-full" />} placeholder="Buscar perfiles y convocatorias..." className="mt-16" />
-            <div className="flex gap-5 mt-6 relative">
+            <div className="flex gap-5 mt-6 relative mb-20">
                 {/* Lista de convocatorias */}
                 <div className={`grid grid-cols-1 lg:grid-cols-3 gap-6 items-start self-start`} >
                     {convocatorias.map((convocatoria) => {

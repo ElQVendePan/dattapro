@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useModal } from '../hook/useModal'
 import RedirectModal from '../modals/RedirectModal'
 import Test from '../modals/test'
+import ExportProfile from '../modals/ExportProfile'
 
 const Modal = () => {
     const startY = useRef<number | null>(null)
@@ -79,6 +80,8 @@ const Modal = () => {
                         switch (modalContent) {
                             case 'redirect':
                                 return <RedirectModal />;
+                            case 'export-profile':
+                                return <ExportProfile />;
                             default:
                                 return <Test />;
                         }
