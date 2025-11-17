@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import type { PageProps } from "../../pages/Signup";
+import type { PageProps } from "../../pages/Signup_old";
 import Input from "../../components/Input";
 import { FaUser } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";

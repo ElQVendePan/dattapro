@@ -2,12 +2,12 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Modal from './components/Modal'
-import Signup from './pages/Signup'
 import Convocatorias from './pages/Convocatorias'
 import { useUserStore } from './store/useUserStore'
 import Login from './pages/Login'
 import PerfilProfesional from './components/perfil/PerfilProfesional'
 import MapaTalento from './pages/MapaTalento'
+import Signup from './pages/Signup'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('/')
