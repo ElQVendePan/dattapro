@@ -81,7 +81,7 @@ const PerfilProfesional: React.FC = () => {
 
     if (loading) {
         return (
-            <>
+            <div className="p-5">
                 <Header hasBack title="Perfil Profesional" />
                 <div className="animate-pulse">
                     <div className="bg-bg-secondary h-48 w-full fixed top-0 left-0 overflow-hidden">
@@ -116,12 +116,12 @@ const PerfilProfesional: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 
     return (
-        <div className="mb-22">
+        <div className="mb-22 p-5">
             <Header hasBack title="Perfil Profesional" />
             <div className="bg-bg-secondary h-48 w-full fixed top-0 left-0 overflow-hidden">
                 <img src={profileData?.foto ?? "/default-bg.jpg"} className="h-full w-full object-cover brightness-30 blur-xl" alt={`${profileData?.nombres} ${profileData?.apellidos}`} />

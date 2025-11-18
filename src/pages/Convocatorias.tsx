@@ -68,7 +68,7 @@ const Convocatorias = () => {
     }
 
     return (
-        <>
+        <div className="p-5">
             <Header title="Convocatorias" />
             <Input icon={<FaSearch className="w-full h-full" />} placeholder="Buscar perfiles y convocatorias..." className="mt-16" />
             <div className="flex gap-5 mt-6 relative mb-20">
@@ -91,7 +91,7 @@ const Convocatorias = () => {
                     })}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

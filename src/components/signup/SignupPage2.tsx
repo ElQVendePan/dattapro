@@ -21,15 +21,15 @@ const RadioList = ({ name, register, items, value }: any) => (
     </RadioGroup>
 );
 
-const SignupPage2 = ({ register, errors, watchValues, tiposDocumento, facultades, programas }: any) => {
+const SignupPage2 = ({ register, errors, watch, tiposDocumento, facultades, programas, centroInvestigativo }: any) => {
 
-    const {
-        tipoDocumentoValue,
-        facultadValue,
-        programaValue,
-        tipoVinculacionValue,
-        sedeValue,
-    } = watchValues;
+    const tipoDocumentoValue = watch("tipo_documento");
+    const facultadValue = watch("facultad");
+    const programaValue = watch("programa_academico");
+    const tipoVinculacionValue = watch("tipo_vinculacion");
+    const sedeValue = watch("sede");
+    const centroInvestigacionBooleanValue = watch("centro_investigacion_boolean");
+    const centroInvestigacionValue = watch("centro_investigacion");
 
     return (
         <>
@@ -101,12 +101,16 @@ const SignupPage2 = ({ register, errors, watchValues, tiposDocumento, facultades
 
             <Question>
                 <QuestionLabel>7. Programa Académico</QuestionLabel>
-                <RadioList
+                {programas.length === 0 ? (
+                    <p className="text-sm opacity-70 mb-4">
+                        Selecciona una facultad para ver los programas académicos disponibles.
+                    </p>
+                ) : <RadioList
                     name="programa_academico"
                     register={register}
                     items={programas}
                     value={programaValue}
-                />
+                />}
             </Question>
 
             <Question>
@@ -137,6 +141,38 @@ const SignupPage2 = ({ register, errors, watchValues, tiposDocumento, facultades
                 <QuestionLabel>10. Perfil Profesional</QuestionLabel>
                 <TextArea {...register("perfil_profesional", { required: true })} placeholder="Descripción breve del perfil profesional" />
             </Question>
+
+            <Question>
+                <QuestionLabel>11. ¿Pertenece a un centro de investigación?</QuestionLabel>
+                <RadioGroup>
+                    <Radio {...register("centro_investigacion_boolean", { required: true })} value="1" isChecked={centroInvestigacionBooleanValue === "1"}>
+                        Sí
+                    </Radio>
+                    <Radio {...register("centro_investigacion_boolean", { required: true })} value="0" isChecked={centroInvestigacionBooleanValue === "0"}>
+                        No
+                    </Radio>
+                </RadioGroup>
+            </Question>
+
+            {centroInvestigacionBooleanValue === "1" && (
+                <Question>
+                    <QuestionLabel>12. Centro de Investigación</QuestionLabel>
+
+                    {centroInvestigativo.length === 0 ? (
+                        <p className="text-sm opacity-70">
+                            No hay centros de investigación disponibles.
+                        </p>
+                    ) : (
+                        <RadioGroup>
+                            {centroInvestigativo.map((item: any) => (
+                                <Radio key={item.id} {...register("centro_investigacion", { required: true })} value={item.id} isChecked={String(centroInvestigacionValue) === String(item.id)}>
+                                    {item.nombre}
+                                </Radio>
+                            ))}
+                        </RadioGroup>
+                    )}
+                </Question>
+            )}
         </>
     );
 };

@@ -35,7 +35,7 @@ const MapaTalento = () => {
     }, []);
 
     return (
-        <div className="mb-20">
+        <div className="mb-20 p-5">
             <div className="relative bg-bg-secondary lg:bg-transparent w-screen lg:w-full -ml-5 lg:ml-0 p-5 lg:px-0 -mt-5 lg:-mt-2 pt-22">
                 <Header title="Mapa de Talento"></Header>
                 <div className="flex items-center gap-2 relative">

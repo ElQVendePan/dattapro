@@ -8,6 +8,7 @@ import { useSignupStore } from "../store/signupStore";
 import SignupPage2 from "../components/signup/SignupPage2";
 import SignupPage3 from "../components/signup/SignupPage3";
 import SignupPage4 from "../components/signup/SignupPage4";
+import SignupPage6 from "../components/signup/SignupPage6";
 import SignupPage5 from "../components/signup/SignupPage5";
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
@@ -32,16 +33,7 @@ const Signup = () => {
     const { setData } = useSignupStore();
 
     // Watch values
-    const tipoDocumentoValue = watch("tipo_documento");
     const facultadValue = watch("facultad");
-    const programaValue = watch("programa_academico");
-    const tipoVinculacionValue = watch("tipo_vinculacion");
-    const sedeValue = watch("sede");
-    const areaConocimientoValue = watch("area_conocimiento");
-    const certificacionValue = watch("certificacion");
-    const tiposProyectoValue = watch("tipos_proyecto");
-    const tiposServicioValue = watch("tipos_servicio");
-    const areasEspecialidadValue = watch("areas_especialidad");
 
     // Data
     const [tiposDocumento, setTiposDocumento] = useState([]);
@@ -52,6 +44,13 @@ const Signup = () => {
     const [tiposProyecto, setTiposProyecto] = useState([]);
     const [tiposServicio, setTiposServicio] = useState([]);
     const [areasEspecialidad, setAreasEspecialidad] = useState([]);
+    const [centroInvestigativo, setCentroInvestigativo] = useState([]);
+    const [competenciasTransversales, setCompetenciasTransversales] = useState([]);
+    const [competenciasTecnicas, setCompetenciasTecnicas] = useState([]);
+    const [sectoresExperiencia, setSectoresExperiencia] = useState([]);
+    const [interesesRed, setInteresesRed] = useState([]);
+    const [idiomas, setIdiomas] = useState([]);
+    const [nivelesIdioma, setNivelesIdioma] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -62,6 +61,17 @@ const Signup = () => {
             setTiposProyecto(await fetchData(`${API_URL}/data/get-tipos-proyecto.php`));
             setTiposServicio(await fetchData(`${API_URL}/data/get-servicios.php`));
             setAreasEspecialidad(await fetchData(`${API_URL}/data/get-areas-especialidad.php`));
+            setCentroInvestigativo(await fetchData(`${API_URL}/data/get-centro-investigacion.php`));
+            setCompetenciasTransversales(await fetchData(`${API_URL}/data/get-competencias-transversales.php`));
+            setCompetenciasTecnicas(await fetchData(`${API_URL}/data/get-competencias-tecnicas.php`));
+            setSectoresExperiencia(await fetchData(`${API_URL}/data/get-sectores-experiencia.php`));
+            setInteresesRed(await fetchData(`${API_URL}/data/get-intereses-red.php`));
+            const idiomasRaw = await axios.get(`${API_URL}/data/get-idiomas.php`);
+
+            if (idiomasRaw.data.status === "success") {
+                setIdiomas(idiomasRaw.data.idiomas || []);
+                setNivelesIdioma(idiomasRaw.data.niveles || []);
+            }
         })();
     }, []);
 
@@ -80,6 +90,7 @@ const Signup = () => {
         setData(data);
 
         if (id) {
+            window.scrollTo(0, 0);
             navigate(`/signup/${Number(id) + 1}`);
         }
     };
@@ -94,16 +105,11 @@ const Signup = () => {
                         <SignupPage2
                             register={register}
                             errors={errors}
-                            watchValues={{
-                                tipoDocumentoValue,
-                                facultadValue,
-                                programaValue,
-                                tipoVinculacionValue,
-                                sedeValue
-                            }}
+                            watch={watch}
                             tiposDocumento={tiposDocumento}
                             facultades={facultades}
                             programas={programas}
+                            centroInvestigativo={centroInvestigativo}
                         />
                         <div className="mt-6 grid">
                             <Button primary disabled={!isValid}>Continuar</Button>
@@ -118,9 +124,11 @@ const Signup = () => {
                         <SignupPage3
                             register={register}
                             control={control}
-                            watchValues={{ areaConocimientoValue, certificacionValue }}
+                            watch={watch}
                             areasConocimiento={areasConocimiento}
                             certificaciones={certificaciones}
+                            idiomas={idiomas}
+                            nivelesIdioma={nivelesIdioma}
                         />
                         <div className="mt-6 grid">
                             <Button primary disabled={!isValid}>Continuar</Button>
@@ -135,7 +143,7 @@ const Signup = () => {
                         <SignupPage4
                             register={register}
                             errors={errors}
-                            watchValues={{ tiposProyectoValue }}
+                            watch={watch}
                             tiposProyecto={tiposProyecto}
                         />
                         <div className="mt-6 grid">
@@ -151,9 +159,27 @@ const Signup = () => {
                         <SignupPage5
                             register={register}
                             errors={errors}
+                            competenciasTransversales={competenciasTransversales}
+                            competenciasTecnicas={competenciasTecnicas}
+                            watch={watch}
+                        />
+                        <div className="mt-6 grid">
+                            <Button primary disabled={!isValid}>Continuar</Button>
+                        </div>
+                    </form>
+                </div>
+            )}
+
+            {id === "6" && (
+                <div className="p-5">
+                    <form className="mt-5 max-w-lg" onSubmit={handleSubmit(onSubmit)}>
+                        <SignupPage6
+                            register={register}
+                            watch={watch}
                             tiposServicio={tiposServicio}
                             areasEspecialidad={areasEspecialidad}
-                            watchValues={{ tiposServicioValue, areasEspecialidadValue }}
+                            sectoresExperiencia={sectoresExperiencia}
+                            interesesRed={interesesRed}
                         />
                         <div className="mt-6 grid">
                             <Button primary disabled={!isValid}>Continuar</Button>

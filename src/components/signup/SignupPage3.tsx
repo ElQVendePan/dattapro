@@ -20,26 +20,19 @@ const CheckboxList = ({ name, register, items, selectedValues }: any) => (
     </CheckboxGroup>
 );
 
-const SignupPage3 = ({ register, control, watchValues, areasConocimiento, certificaciones }: any) => {
+const SignupPage3 = ({ register, watch, control, areasConocimiento, certificaciones, idiomas, nivelesIdioma }: any) => {
 
-    const { areaConocimientoValue, certificacionValue } = watchValues;
+    const areaConocimientoValue = watch("area_conocimiento");
+    const certificacionValue = watch("certificacion");
 
     // 🔥 PREGRADOS
-    const {
-        fields: pregradoFields,
-        append: addPregrado,
-        remove: removePregrado
-    } = useFieldArray({
+    const { fields: pregradoFields, append: addPregrado, remove: removePregrado } = useFieldArray({
         control,
         name: "pregrados"
     });
 
     // 🔥 POSGRADOS
-    const {
-        fields: posgradoFields,
-        append: addPosgrado,
-        remove: removePosgrado
-    } = useFieldArray({
+    const { fields: posgradoFields, append: addPosgrado, remove: removePosgrado } = useFieldArray({
         control,
         name: "posgrados"
     });
@@ -125,19 +118,29 @@ const SignupPage3 = ({ register, control, watchValues, areasConocimiento, certif
             <Question>
                 <QuestionLabel>4. Idiomas</QuestionLabel>
 
-                <LanguageSlider
-                    name="idioma_espanol"
-                    label="Español"
-                    control={control}
-                    niveles={["A1", "A2", "B1", "B2", "C1", "C2", "Nativo"]}
-                />
+                {idiomas.map((idioma: any) => (
+                    <div
+                        key={idioma.id}
+                        className="flex items-center gap-4 mb-6"
+                    >
+                        {/* Imagen de la bandera */}
+                        <img
+                            src={`/idiomas/${idioma.id}.jpg`}
+                            alt={idioma.idioma}
+                            className="w-12 h-12 object-cover rounded-xl"
+                        />
 
-                <LanguageSlider
-                    name="idioma_ingles"
-                    label="Inglés"
-                    control={control}
-                    niveles={["A1", "A2", "B1", "B2", "C1", "C2", "Nativo"]}
-                />
+                        {/* Slider del idioma */}
+                        <div className="flex-1">
+                            <LanguageSlider
+                                name={`idioma_${idioma.id}`}
+                                label={idioma.idioma}
+                                control={control}
+                                niveles={nivelesIdioma.map((n: any) => n.nivel)}
+                            />
+                        </div>
+                    </div>
+                ))}
             </Question>
             <Question>
                 <QuestionLabel>5. Certificaciones</QuestionLabel>

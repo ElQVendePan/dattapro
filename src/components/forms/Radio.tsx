@@ -3,9 +3,9 @@ interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
     isChecked?: boolean; // Added isChecked property
 }
 
-const RadioGroup: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const RadioGroup: React.FC<{ children: React.ReactNode, className?: string }> = ({ children, className }) => {
     return (
-        <div className="mt-6 flex flex-col rounded-2xl border-1 border-bg-third divide-y-1 divide-bg-third overflow-hidden">
+        <div className={`mt-6 flex flex-col rounded-2xl border-1 border-bg-third divide-y-1 divide-bg-third overflow-hidden ${className}`}>
             {children}
         </div>
     );

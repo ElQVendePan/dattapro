@@ -54,7 +54,7 @@ const ConvocatoriaDetalle = ({ convocatoria }: ConvocatoriaDetalleProps) => {
     };
 
     return (
-        <div className="bg-bg-primary -mt-5 rounded-2xl mb-20">
+        <div className="bg-bg-primary -mt-5 rounded-2xl mb-20 p-5">
             {/* Imagen de fondo con gradiente */}
             <div className="w-screen h-64 fixed top-0 left-0">
                 <img src={convocatoria.imagenFondo} className="w-full h-full object-cover brightness-50" alt={convocatoria.titulo} />

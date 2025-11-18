@@ -1,64 +1,99 @@
-import { Checkbox, CheckboxGroup } from "../forms/Checkbox";
 import Question, { QuestionLabel } from "../forms/Question";
 import { Radio, RadioGroup } from "../forms/Radio";
 
-const RadioList = ({ name, register, items, value }: any) => (
-    <RadioGroup>
-        {items.map((item: any) => (
-            <Radio
-                key={item.id}
-                {...register(name, { required: true })}
-                value={item.id}
-                isChecked={String(value) === String(item.id)}
-            >
-                {item.nombre}
-            </Radio>
-        ))}
-    </RadioGroup>
-);
+const RadioList = ({ name, register, selectedValue }: any) => {
+    const opciones = [
+        { id: 1, nombre: "1" },
+        { id: 2, nombre: "2" },
+        { id: 3, nombre: "3" },
+        { id: 4, nombre: "4" }
+    ];
 
-const CheckboxList = ({ name, register, items, selectedValues }: any) => (
-    <CheckboxGroup>
-        {items.map((item: any) => (
-            <Checkbox key={item.id} {...register(name, { required: true })} value={item.id} isChecked={selectedValues?.includes(String(item.id))}>
-                {item.nombre}
-            </Checkbox>
-        ))}
-    </CheckboxGroup>
-);
+    return (
+        <RadioGroup>
+            {opciones.map((item: any) => (
+                <Radio
+                    key={item.id}
+                    {...register(name, { required: true })}
+                    value={item.id}
+                    isChecked={String(selectedValue) === String(item.id)}
+                >
+                    {item.nombre}
+                </Radio>
+            ))}
+        </RadioGroup>
+    );
+};
 
-const SignupPage5 = ({ register, errors, watchValues, tiposServicio, areasEspecialidad }: any) => {
+const SignupPage5 = ({ register, competenciasTransversales, competenciasTecnicas, watch }: any) => {
     return (
         <>
             <img src="/dattapro-logo-white.svg" className="h-10" alt="logo" />
+
+            {/* ------------------------- */}
+            {/* BLOQUE 1 - TRANSVERSALES */}
+            {/* ------------------------- */}
             <p className="mt-20 opacity-60 text-lg">Sección 4</p>
-            <h2 className="font-bold text-4xl">Interes de Participación</h2>
-            <div className="text-sm mt-4">
+            <h2 className="font-bold text-4xl">Competencias Transversales</h2>
+
+            <div className="text-sm mt-4 mb-8">
                 <b>Objetivo: </b>
                 <span className="opacity-70">
-                    Conocer los intereses del profesor respecto a los espacios o actividades en los que desea participar dentro de la Red de Colaboración Institucional.
+                    Identificar las competencias transversales que facilitan la participación en proyectos interdisciplinarios dentro de la Red.
                 </span>
-                <Question>
-                    <QuestionLabel>1. Tipo de Servicio que Puede Ofrecer</QuestionLabel>
-                    <CheckboxList
-                        name="tipos_servicio"
-                        register={register}
-                        items={tiposServicio}
-                        selectedValues={watchValues.tiposServicioValue || []}
-                    />
-                </Question>
-                <Question>
-                    <QuestionLabel>2. Areas de Especialidad</QuestionLabel>
-                    <CheckboxList
-                        name="areas_especialidad"
-                        register={register}
-                        items={areasEspecialidad}
-                        selectedValues={watchValues.areasEspecialidadValue || []}
-                    />
-                </Question>
             </div>
-        </>
-    )
-}
 
-export default SignupPage5
+            {competenciasTransversales.map((item: any, index: number) => {
+                const fieldName = `competencia_transversal_${item.id}`;
+                const selectedValue = watch(fieldName);
+
+                return (
+                    <Question key={item.id}>
+                        <QuestionLabel>
+                            {index + 1}. {item.nombre}
+                        </QuestionLabel>
+
+                        <RadioList
+                            name={fieldName}
+                            register={register}
+                            selectedValue={selectedValue}
+                        />
+                    </Question>
+                );
+            })}
+
+            {/* --------------------- */}
+            {/* BLOQUE 2 - TÉCNICAS */}
+            {/* --------------------- */}
+            <h2 className="font-bold text-4xl mt-10">Competencias Técnicas</h2>
+
+            <div className="text-sm mt-4 mb-8">
+                <b>Objetivo: </b>
+                <span className="opacity-70">
+                    Evaluar el dominio técnico del profesor en áreas específicas que aporten a proyectos tecnológicos o académicos dentro de la Red.
+                </span>
+            </div>
+
+            {competenciasTecnicas.map((item: any, index: number) => {
+                const fieldName = `competencia_tecnica_${item.id}`;
+                const selectedValue = watch(fieldName);
+
+                return (
+                    <Question key={item.id}>
+                        <QuestionLabel>
+                            {index + 1}. {item.nombre}
+                        </QuestionLabel>
+
+                        <RadioList
+                            name={fieldName}
+                            register={register}
+                            selectedValue={selectedValue}
+                        />
+                    </Question>
+                );
+            })}
+        </>
+    );
+};
+
+export default SignupPage5;
