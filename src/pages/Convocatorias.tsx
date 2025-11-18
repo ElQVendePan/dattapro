@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { FaSearch } from "react-icons/fa"
 import axios from "axios"
-import Input from "../components/Input"
+import Input from "../components/forms/Input"
 import ConvocatoriaCard from "../components/convocatoria/ConvocatoriaCard"
 import ConvocatoriaDetalle from "../components/convocatoria/ConvocatoriaDetalle"
 import { useParams } from "react-router-dom"

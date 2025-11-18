@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const PerfilSmallCard = () => {
     return (
-        <Link to={"/mapa-talento/perfil-profesional/1"} className="p-4 bg-bg-secondary rounded-2xl relative inline-block w-74 select-none cursor-pointer border-1 border-bg-secondary hover:scale-102 hover:border-primary duration-200">
+        <Link to={"/mapa-talento/perfil-profesional/1"} className="p-4 bg-bg-secondary rounded-2xl relative inline-block w-74 select-none cursor-pointer border-1 border-bg-secondary hover:scale-98 hover:brightness-125 hover:border-primary duration-200">
             <div className="p-0.5 px-3 text-xs bg-primary text-white rounded-lg inline-block font-bold absolute -top-2 -right-2">¡Nuevo!</div>
             <div className="flex items-center gap-4">
                 <div className="w-16 h-16 overflow-hidden rounded-full">

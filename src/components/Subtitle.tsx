@@ -1,13 +1,11 @@
 interface SubtitleProps {
     children: React.ReactNode;
-    icon?: React.ReactNode;
 }
 
-const Subtitle: React.FC<SubtitleProps> = ({ children, icon }) => {
+const Subtitle: React.FC<SubtitleProps> = ({ children }) => {
     return (
-        <div className="flex items-center gap-2 my-6">
-            {icon && <div className='w-6 h-6 flex items-center justify-center text-primary'>{icon}</div>}
-            <span className="font-medium">{children}</span>
+        <div className="mt-10 pt-10 border-t-2 border-bg-third">
+            <h2 className="font-bold">{children}</h2>
         </div>
     )
 }

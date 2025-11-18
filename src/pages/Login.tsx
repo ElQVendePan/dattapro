@@ -1,4 +1,4 @@
-import Input from '../components/Input'
+import Input from '../components/forms/Input'
 import Button from '../components/Button'
 import { useModal } from '../hook/useModal';
 import { useUserStore } from '../store/useUserStore';

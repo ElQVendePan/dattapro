@@ -6,7 +6,7 @@ interface CentroInvestigacionCardProps {
 
 const CentroInvestigacionCard = ({ id, nombre, subtitulo }: CentroInvestigacionCardProps) => {
     return (
-        <div className="bg-bg-secondary w-full p-5 relative rounded-2xl text-white flex items-start gap-4 overflow-hidden">
+        <div className="bg-bg-secondary w-full p-5 relative rounded-2xl flex items-start gap-4 border-1 border-bg-secondary overflow-hidden hover:brightness-110 hover:scale-98 hover:border-primary duration-200">
             <img className="absolute w-full h-20 object-cover left-0 top-0" src={`/centro-investigativo/${id}-bg.jpg`} alt="" />
             <div className="relative w-full mt-6">
                 <div className="w-16 h-16 overflow-hidden rounded-xl shrink-0">

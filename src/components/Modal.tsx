@@ -3,6 +3,9 @@ import { useModal } from '../hook/useModal'
 import RedirectModal from '../modals/RedirectModal'
 import Test from '../modals/test'
 import ExportProfile from '../modals/ExportProfile'
+import ExternalProfile from '../modals/ExternalProfile'
+import UnauthorizedDataUse from '../modals/UnauthorizedDataUse'
+import ValidateID from '../modals/ValidateID'
 
 const Modal = () => {
     const startY = useRef<number | null>(null)
@@ -82,6 +85,12 @@ const Modal = () => {
                                 return <RedirectModal />;
                             case 'export-profile':
                                 return <ExportProfile />;
+                            case 'external-profile':
+                                return <ExternalProfile />;
+                            case 'unauthorized-data-use':
+                                return <UnauthorizedDataUse />;
+                            case 'validate-id':
+                                return <ValidateID />;
                             default:
                                 return <Test />;
                         }

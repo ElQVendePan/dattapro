@@ -1,9 +1,8 @@
-import { FaAward, FaCalendar, FaMoneyBill, FaShareAlt } from "react-icons/fa";
-import { HiMiniBookOpen } from "react-icons/hi2";
+import { FaAward, FaShareAlt } from "react-icons/fa";
 import Button from "../Button";
 import { HiExternalLink } from "react-icons/hi";
-import { IoBookmark } from "react-icons/io5";
 import { type ReactNode } from "react";
+import Subtitle from "../Subtitle";
 
 type Convocatoria = {
     imagenFondo: string;
@@ -24,20 +23,14 @@ interface ConvocatoriaDetalleProps {
 }
 
 interface InfoRowProps {
-    icon: ReactNode
     label: string;
     value: string | ReactNode
 }
 
-const InfoRow = ({ icon, label, value }: InfoRowProps) => (
+const InfoRow = ({ label, value }: InfoRowProps) => (
     <div className="mt-12">
-        <div className="flex items-center gap-3 mb-5">
-            <div className="w-10 h-10 flex items-center bg-primary text-white rounded-xl justify-center">
-                {icon}
-            </div>
-            <h2 className="font-bold">{label}</h2>
-        </div>
-        <span className="block opacity-70">{value}</span>
+        <Subtitle>{label}</Subtitle>
+        <span className="mt-4 block opacity-70">{value}</span>
     </div>
 );
 
@@ -61,7 +54,7 @@ const ConvocatoriaDetalle = ({ convocatoria }: ConvocatoriaDetalleProps) => {
     };
 
     return (
-        <div className="bg-bg-primary -mt-5 rounded-2xl">
+        <div className="bg-bg-primary -mt-5 rounded-2xl mb-20">
             {/* Imagen de fondo con gradiente */}
             <div className="w-screen h-64 fixed top-0 left-0">
                 <img src={convocatoria.imagenFondo} className="w-full h-full object-cover brightness-50" alt={convocatoria.titulo} />
@@ -80,28 +73,26 @@ const ConvocatoriaDetalle = ({ convocatoria }: ConvocatoriaDetalleProps) => {
                     </p>
                 </div>
                 {/* Buttons */}
-                <div className="flex items-center gap-2 mt-10 mb-10 pb-10 border-b-1 border-bg-third">
+                <div className="flex items-center gap-2 mt-10">
                     <Button className="w-14 h-14 shrink-0" onClick={handleShare}>
                         <FaShareAlt className="w-5/6 h-5/6 mx-auto" />
-                    </Button>
-                    <Button className="w-14 h-14 shrink-0">
-                        <IoBookmark className="w-5/6 h-5/6 mx-auto" />
                     </Button>
                     <a href={convocatoria.enlace} className="w-full" target="_blank" rel="noopener noreferrer">
                         <Button primary className="w-full" icon={<HiExternalLink className="w-full h-full" />}>Ver Enlace</Button>
                     </a>
                 </div>
-                <h2 className="font-bold">Objetivo de la Convocatoria</h2>
-                <p className="opacity-70 mt-4">{convocatoria.descripcion}</p>
                 <div className="mt-6">
+                    {convocatoria.descripcion && (
+                        <InfoRow label="Descripción" value={convocatoria.descripcion} />
+                    )}
                     {convocatoria.criteriosParticipacion && (
-                        <InfoRow icon={<HiMiniBookOpen className="w-1/2 h-1/2" />} label="Criterios de Participación" value={convocatoria.criteriosParticipacion} />
+                        <InfoRow label="Criterios de Participación" value={convocatoria.criteriosParticipacion} />
                     )}
                     {convocatoria.financiacion && (
-                        <InfoRow icon={<FaMoneyBill />} label="Monto de Financiación" value={convocatoria.financiacion} />
+                        <InfoRow label="Monto de Financiación" value={convocatoria.financiacion} />
                     )}
                     {convocatoria.fechaLimite && (
-                        <InfoRow icon={<FaCalendar />} label="Fecha de Inicio y Finalización" value={`${convocatoria.fechaInicio} | ${convocatoria.fechaLimite}`} />
+                        <InfoRow label="Fecha de Inicio y Finalización" value={`${convocatoria.fechaInicio} | ${convocatoria.fechaLimite}`} />
                     )}
                 </div>
             </div>

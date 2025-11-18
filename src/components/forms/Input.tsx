@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 interface InputProps {
     type?: string;
     icon?: ReactNode;
-    label: string;
+    label?: string;
     placeholder: string;
     className?: string;
     [key: string]: any;
@@ -21,7 +21,7 @@ const Input = ({type = 'text', icon, label, placeholder, className = '', ...prop
             {label && (
                 <label className="block font-medium ml-4">{label}</label>
             )}
-            <div className={`bg-bg-third border-2 border-bg-third p-4 rounded-full flex items-center gap-3 ${className}`}>
+            <div className={`bg-bg-secondary border-1 border-bg-third p-4 rounded-2xl flex items-center gap-3 ${className}`}>
                 {icon && <div className="w-5 h-5 flex opacity-70">{icon}</div>}
                 <input type={inputType} placeholder={placeholder} className="bg-transparent outline-none flex-1 text-base" {...props} />
                 {isPassword && (

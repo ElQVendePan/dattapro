@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ title, hasBack = false }) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            setScrolled(window.scrollY > 20);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ title, hasBack = false }) => {
     }, []);
 
     return (
-        <div className={`fixed top-0 left-0 w-full px-5 py-5 z-10 transition-all duration-300 ${scrolled ? "bg-bg-primary/80 backdrop-blur-lg" : "bg-transparent"}`}>
+        <div className={`fixed top-0 left-0 lg:left-[16%] w-full lg:w-[84%] px-5 lg:px-6 py-5 lg:pt-10 z-10 transition-all duration-300 ${scrolled ? "bg-bg-primary/80 backdrop-blur-lg" : "bg-transparent"}`}>
             <div className="flex items-center">
                 {hasBack ? (
                     <>
@@ -32,11 +32,11 @@ const Header: React.FC<HeaderProps> = ({ title, hasBack = false }) => {
                         </div>
                     </>
                 ) : <h1 className="text-xl lg:text-3xl font-bold">{title}</h1>}
-                <div className="ml-auto flex items-center gap-4">
+                {/* <div className="ml-auto flex items-center gap-4">
                     <div className="w-10 h-10 flex items-center justify-center cursor-pointer shrink-0">
                         <FaBell className="w-1/2 h-1/2" />
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );

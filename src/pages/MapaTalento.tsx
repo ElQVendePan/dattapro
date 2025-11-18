@@ -1,6 +1,6 @@
 import { FaSearch, FaSlidersH } from "react-icons/fa"
 import Header from "../components/Header"
-import Input from "../components/Input"
+import Input from "../components/forms/Input"
 import Button from "../components/Button"
 import PerfilSmallCard from "../components/perfil/PerfilSmallCard"
 import CentroInvestigacionCard from "../components/CentroInvestigacionCard"
@@ -36,16 +36,17 @@ const MapaTalento = () => {
 
     return (
         <div className="mb-20">
-            <div className="relative bg-bg-secondary w-screen -ml-5 p-5 -mt-5 pt-22">
-                <img src="/default-bg.jpg" className="w-full h-full object-cover absolute opacity-0 top-0 left-0" alt="" />
+            <div className="relative bg-bg-secondary lg:bg-transparent w-screen lg:w-full -ml-5 lg:ml-0 p-5 lg:px-0 -mt-5 lg:-mt-2 pt-22">
                 <Header title="Mapa de Talento"></Header>
                 <div className="flex items-center gap-2 relative">
-                    <Input 
-                        onFocus={() => setSearchActive(true)} 
-                        onBlur={() => setSearchActive(false)} 
-                        icon={<FaSearch className="w-full h-full" />} 
-                        placeholder="¿Que es lo que buscas?"
-                    />
+                    <div className="w-120">
+                        <Input
+                            onFocus={() => setSearchActive(true)}
+                            onBlur={() => setSearchActive(false)}
+                            icon={<FaSearch className="w-full h-full" />}
+                            placeholder="¿Que es lo que buscas?"
+                        />
+                    </div>
                     <Button className="w-14 h-14 shrink-0 bg-bg-third">
                         <FaSlidersH className="w-5/6 h-5/6 mx-auto" />
                     </Button>
@@ -54,8 +55,8 @@ const MapaTalento = () => {
             {!searchActive ? (
                 <>
                     <div className="mt-6">
-                        <h2 className="font-bold mb-1 lg:mb-2">Nuevos Perfiles</h2>
-                        <div className="w-screen flex items-stretch gap-4 -ml-5 overflow-x-scroll overflow-y-visible py-4 px-5 cursor-grab active:cursor-grabbing">
+                        <h2 className="font-bold mb-2">Nuevos Perfiles</h2>
+                        <div className="w-screen lg:w-full flex items-stretch gap-4 -ml-5 lg:ml-0 overflow-x-auto py-4 px-5 lg:px-0 select-none">
                             <div className="inline-block mr-4">
                                 <PerfilSmallCard />
                             </div>
@@ -71,8 +72,8 @@ const MapaTalento = () => {
                         </div>
                     </div>
                     <div className="mt-6">
-                        <h2 className="font-bold">Centros de Investigación</h2>
-                        <div className="w-screen flex items-stretch gap-4 -ml-5 overflow-x-scroll overflow-y-visible py-4 px-5 cursor-grab active:cursor-grabbing">
+                        <h2 className="font-bold mb-2">Centros de Investigación</h2>
+                        <div className="w-screen lg:w-full flex items-stretch gap-4 -ml-5 lg:ml-0 overflow-x-auto py-4 px-5 lg:px-0 select-none">
                             {centros.map((centro: any) => (
                                 <div key={centro.id} className="flex-shrink-0 flex w-80">
                                     <CentroInvestigacionCard

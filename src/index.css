@@ -2,7 +2,7 @@
 
 :root {
     --bg-primary: #FFFFFF;
-    --bg-secondary: #F5F5F5;
+    --bg-secondary: #FCFCFC;
     --bg-third: #E8E8E8;
     --text-color: #000000;
     --skeleton: #DDDDDD;
@@ -12,7 +12,7 @@
     :root {
         --bg-primary: #121212;
         --bg-secondary: #171717;
-        --bg-third: #212121;
+        --bg-third: #3b3b3b;
         --text-color: #FFFFFF;
         --skeleton: #505050;
     }
@@ -38,18 +38,18 @@ h1, h2, h3, h4, h5, h6, button, label {
 }
 
 /* Minimalist scrollbar styles */
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
     width: 12px;
     background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
     background: #cccccc;
     border-radius: 4px;
 }
 
 @media (prefers-color-scheme: dark) {
-    ::-webkit-scrollbar-thumb {
+    body::-webkit-scrollbar-thumb {
         background: #444444;
     }
 }
@@ -64,4 +64,12 @@ h1, h2, h3, h4, h5, h6, button, label {
     * {
         scrollbar-color: #444444 transparent;
     }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
