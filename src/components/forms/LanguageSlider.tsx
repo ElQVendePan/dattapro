@@ -4,16 +4,14 @@ import { Controller, type Control } from "react-hook-form";
 type LanguageSliderProps = {
     name: string;
     control: Control<any>;
-    label: string;
     niveles: string[];
 };
 
-const LanguageSlider = ({ name, control, label, niveles }: LanguageSliderProps) => {
+const LanguageSlider = ({ name, control, niveles }: LanguageSliderProps) => {
     const [isDragging, setIsDragging] = useState(false);
 
     return (
-        <div className="mb-10">
-            <label className="font-semibold text-sm opacity-90">{label}</label>
+        <div className="mb-4">
             <Controller name={name} control={control} defaultValue={3} render={({ field }) => {const max = niveles.length - 1; const percentage = (field.value / max) * 100;
                     return (
                         <div className="mt-5">

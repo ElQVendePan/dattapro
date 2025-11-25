@@ -11,9 +11,10 @@ const API_URL = import.meta.env.VITE_API_BASE_URL
 
 const MapaTalento = () => {
     const [centros, setCentros] = useState([]);
+    const [newUsuarios, setNewUsuarios] = useState<{ id: string }[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchActive, setSearchActive] = useState(false);
-    const [query, setQuery] = useState("");
+
 
     useEffect(() => {
         const fetchCentros = async () => {
@@ -22,16 +23,30 @@ const MapaTalento = () => {
 
                 if (response.data.status === "success") {
                     setCentros(response.data.data);
-                    console.log(response.data.data)
+                    console.log("Centros:", response.data.data);
                 }
             } catch (error) {
                 console.error("Error cargando centros:", error);
-            } finally {
-                setLoading(false);
             }
         };
 
-        fetchCentros();
+        const fetchNewUsuarios = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/usuarios/get-new-usuarios.php`);
+
+                if (response.data.status === "success") {
+                    setNewUsuarios(response.data.data);
+                    console.log("Nuevos usuarios:", response.data.data);
+                }
+            } catch (error) {
+                console.error("Error cargando nuevos usuarios:", error);
+            }
+        };
+
+        // Ejecutar ambas
+        Promise.all([fetchCentros(), fetchNewUsuarios()])
+            .finally(() => setLoading(false));
+
     }, []);
 
     return (
@@ -54,23 +69,20 @@ const MapaTalento = () => {
             </div>
             {!searchActive ? (
                 <>
-                    <div className="mt-6">
-                        <h2 className="font-bold mb-2">Nuevos Perfiles</h2>
-                        <div className="w-screen lg:w-full flex items-stretch gap-4 -ml-5 lg:ml-0 overflow-x-auto py-4 px-5 lg:px-0 select-none">
-                            <div className="inline-block mr-4">
-                                <PerfilSmallCard />
-                            </div>
-                            <div className="inline-block mr-4">
-                                <PerfilSmallCard />
-                            </div>
-                            <div className="inline-block mr-4">
-                                <PerfilSmallCard />
-                            </div>
-                            <div className="inline-block mr-4">
-                                <PerfilSmallCard />
+                    {newUsuarios.length > 0 ? (
+                        <div className="mt-6">
+                            <h2 className="font-bold mb-2">Nuevos Perfiles</h2>
+                            <div className="w-screen lg:w-full flex items-stretch gap-4 -ml-5 lg:ml-0 overflow-x-auto py-4 px-5 lg:px-0 select-none">
+                                {newUsuarios.length > 0 ? (
+                                    newUsuarios.map((usuario) => (
+                                        <div className="inline-block mr-4" key={usuario.id}>
+                                            <PerfilSmallCard id={usuario.id} />
+                                        </div>
+                                    ))
+                                ) : null}
                             </div>
                         </div>
-                    </div>
+                    ) : null}
                     <div className="mt-6">
                         <h2 className="font-bold mb-2">Centros de Investigación</h2>
                         <div className="w-screen lg:w-full flex items-stretch gap-4 -ml-5 lg:ml-0 overflow-x-auto py-4 px-5 lg:px-0 select-none">

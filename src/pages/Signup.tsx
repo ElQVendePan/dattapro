@@ -49,7 +49,7 @@ const Signup = () => {
     const [competenciasTecnicas, setCompetenciasTecnicas] = useState([]);
     const [sectoresExperiencia, setSectoresExperiencia] = useState([]);
     const [interesesRed, setInteresesRed] = useState([]);
-    const [idiomas, setIdiomas] = useState([]);
+    const [idiomas, setIdiomas] = useState<{ id: number;[key: string]: any }[]>([]);
     const [nivelesIdioma, setNivelesIdioma] = useState([]);
 
     useEffect(() => {
@@ -69,7 +69,12 @@ const Signup = () => {
             const idiomasRaw = await axios.get(`${API_URL}/data/get-idiomas.php`);
 
             if (idiomasRaw.data.status === "success") {
-                setIdiomas(idiomasRaw.data.idiomas || []);
+                // Solo mostrar idiomas con id <= 2
+                const idiomasFiltrados = (idiomasRaw.data.idiomas || []).filter(
+                    (item: { id: any; }) => Number(item.id) <= 2
+                );
+
+                setIdiomas(idiomasFiltrados);
                 setNivelesIdioma(idiomasRaw.data.niveles || []);
             }
         })();
@@ -84,6 +89,10 @@ const Signup = () => {
             );
         })();
     }, [facultadValue]);
+
+    const removeIdioma = (id: number) => {
+        setIdiomas((prev) => prev.filter((item) => item.id !== id));
+    };
 
     const onSubmit = (data: any) => {
         console.log(data);
@@ -129,6 +138,7 @@ const Signup = () => {
                             certificaciones={certificaciones}
                             idiomas={idiomas}
                             nivelesIdioma={nivelesIdioma}
+                            onRemoveIdioma={(id: number) => removeIdioma(id)}
                         />
                         <div className="mt-6 grid">
                             <Button primary disabled={!isValid}>Continuar</Button>

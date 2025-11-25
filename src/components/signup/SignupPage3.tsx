@@ -20,7 +20,7 @@ const CheckboxList = ({ name, register, items, selectedValues }: any) => (
     </CheckboxGroup>
 );
 
-const SignupPage3 = ({ register, watch, control, areasConocimiento, certificaciones, idiomas, nivelesIdioma }: any) => {
+const SignupPage3 = ({ register, watch, control, areasConocimiento, certificaciones, idiomas, nivelesIdioma, onRemoveIdioma }: any) => {
 
     const areaConocimientoValue = watch("area_conocimiento");
     const certificacionValue = watch("certificacion");
@@ -119,26 +119,29 @@ const SignupPage3 = ({ register, watch, control, areasConocimiento, certificacio
                 <QuestionLabel>4. Idiomas</QuestionLabel>
 
                 {idiomas.map((idioma: any) => (
-                    <div
-                        key={idioma.id}
-                        className="flex items-center gap-4 mb-6"
-                    >
-                        {/* Imagen de la bandera */}
-                        <img
-                            src={`/idiomas/${idioma.id}.jpg`}
-                            alt={idioma.idioma}
-                            className="w-12 h-12 object-cover rounded-xl"
-                        />
+                    <div key={idioma.id} className="p-4 rounded-xl mb-4 bg-bg-secondary">
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-3">
+                                {/* Bandera */}
+                                <img
+                                    src={`/idiomas/${idioma.id}.jpg`}
+                                    alt={idioma.idioma}
+                                    className="w-8 h-8 object-cover rounded-lg"
+                                />
+                                {/* Nombre del idioma */}
+                                <span className="text-lg font-semibold">{idioma.idioma}</span>
+                            </div>
+                            <button type="button" onClick={() => onRemoveIdioma(idioma.id)} className="text-red-500 hover:text-red-700">
+                                <FaTrash size={18} />
+                            </button>
+                        </div>
 
                         {/* Slider del idioma */}
-                        <div className="flex-1">
-                            <LanguageSlider
-                                name={`idioma_${idioma.id}`}
-                                label={idioma.idioma}
-                                control={control}
-                                niveles={nivelesIdioma.map((n: any) => n.nivel)}
-                            />
-                        </div>
+                        <LanguageSlider
+                            name={`idioma_${idioma.id}`}
+                            control={control}
+                            niveles={nivelesIdioma.map((n: any) => n.nivel)}
+                        />
                     </div>
                 ))}
             </Question>
