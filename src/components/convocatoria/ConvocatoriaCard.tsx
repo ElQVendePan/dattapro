@@ -17,8 +17,8 @@ type ConvocatoriaCardProps = {
 
 const ConvocatoriaCard = ({ convocatoria, onSelect, isSelected }: ConvocatoriaCardProps) => {
     return (
-        <div onClick={onSelect} className={`bg-bg-secondary p-5 rounded-3xl relative overflow-hidden cursor-pointer transition-all duration-200 ${isSelected ? "ring-2 ring-primary" : "hover:ring-1 hover:ring-primary/50"}`}>
-            <img src={convocatoria.imagenFondo} className="absolute top-0 left-0 w-full h-32 object-cover" alt={convocatoria.titulo} />
+        <div onClick={onSelect} className={`bg-bg-secondary p-5 rounded-2xl relative overflow-hidden cursor-pointer transition-all duration-200 ${isSelected ? "ring-2 ring-primary" : "hover:ring-1 hover:ring-primary/50"}`}>
+            <img src={convocatoria.imagenFondo || "/default-bg.jpg"} className="absolute top-0 left-0 w-full h-32 object-cover" alt={convocatoria.titulo} />
             <div className="relative mt-18">
                 <div className="w-18 h-18 rounded-xl border-2 border-bg-third overflow-hidden">
                     <img src={convocatoria.entidadLogo} className="w-full h-full bg-white" alt={`${convocatoria.categoria} logo`} />

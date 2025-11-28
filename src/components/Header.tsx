@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ title, hasBack = false }) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            setScrolled(window.scrollY > 220);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ title, hasBack = false }) => {
     }, []);
 
     return (
-        <div className={`fixed top-0 left-0 w-full p-5 z-10 backdrop-blur-xl duration-200 ${scrolled ? "bg-bg-primary/25" : "bg-transparent"}`}>
+        <div className={`fixed top-0 left-0 w-full p-5 z-10 duration-200 ${scrolled ? "bg-bg-primary/25 backdrop-blur-xl" : "bg-transparent backdrop-blur-none"}`}>
             <div className="flex items-center h-9">
                 {hasBack ? (
                     <div className="w-10 h-10 flex items-center cursor-pointer shrink-0" onClick={() => window.history.back()}>

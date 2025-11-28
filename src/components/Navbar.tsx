@@ -1,6 +1,7 @@
 import { BsFillPeopleFill } from 'react-icons/bs'
+import { HiMenuAlt3 } from 'react-icons/hi'
 import { HiMegaphone } from 'react-icons/hi2'
-import { IoPersonCircleSharp, IoSearchSharp } from 'react-icons/io5'
+import { IoSearchSharp } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 
 const NavbarItem = ({ icon, active, text }: { icon: React.ReactNode; active?: boolean; text: string }) => {
@@ -47,7 +48,7 @@ const Navbar = ({ currentPath }: { currentPath: string }) => {
           <NavbarItem text='Dashboard' icon={<IoSearchSharp />} active={isActive('/busqueda')} />
         </Link>
         <Link to='/profile'>
-          <NavbarItem text='Tu Perfil' icon={<IoPersonCircleSharp />} active={isActive('/profile')} />
+          <NavbarItem text='Tu Perfil' icon={<HiMenuAlt3 />} active={isActive('/profile')} />
         </Link>
       </div>
     </div >

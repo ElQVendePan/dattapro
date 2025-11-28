@@ -3,6 +3,8 @@ import { FaSuitcase } from 'react-icons/fa'
 import { FaLocationDot } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import Button from '../Button';
+import { IoIosArrowForward } from 'react-icons/io';
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -27,36 +29,30 @@ const PerfilSmallCard = ({ id }: { id: string }) => {
 
     if (!data) return null;
 
-    const {
-        nombres,
-        apellidos,
-        foto,
-        facultad,
-        biostatement,
-        centro_id,
-        centro_investigativo
-    } = data;
+    const { nombres, apellidos, foto, facultad, biostatement, centro_id } = data;
 
     return (
-        <Link
-            to={`/mapa-talento/perfil-profesional/${id}`}
-            className="p-4 bg-bg-secondary rounded-2xl relative inline-block w-74 select-none cursor-pointer border-1 border-bg-secondary hover:scale-98 hover:brightness-125 hover:border-primary duration-200"
-        >
+        <div className="p-4 bg-bg-secondary rounded-2xl relative inline-block w-full cursor-pointer border-1 border-bg-secondary hover:scale-98 hover:brightness-125 hover:border-primary duration-200">
             <div className="p-0.5 px-3 text-xs bg-primary text-white rounded-lg inline-block font-bold absolute -top-2 -right-2">
                 ¡Nuevo!
             </div>
-
             <div className="flex items-center gap-4">
-                <div className="w-16 h-16 overflow-hidden rounded-full">
-                    <img className="w-full h-full object-cover" src={foto} alt="" />
+                <div className="relative">
+                    <div className='w-16 h-16 overflow-hidden rounded-full'>
+                        <img className="w-full h-full object-cover" src={foto} alt="" />
+                    </div>
+                    {centro_id && (
+                        <div className="absolute overflow-hidden -right-1 border-1 border-primary bottom-0 w-6 h-6 rounded-full">
+                            <img src={`/centro-investigativo/${centro_id}-logo.jpg`} className='w-full h-full object-cover' alt="" />
+                        </div>
+                    )}
                 </div>
                 <div className="text-lg">
                     <b>{nombres}</b>
                     <p className="opacity-70 text-sm">{apellidos}</p>
                 </div>
             </div>
-
-            <div className="flex items-center text-sm mt-4">
+            <div className="flex items-center text-sm mt-6">
                 <div className="flex items-center justify-center">
                     <FaLocationDot className="inline-block mr-2 text-primary" />
                     <span className="opacity-70">Cúcuta</span>
@@ -67,31 +63,15 @@ const PerfilSmallCard = ({ id }: { id: string }) => {
                     <span className="opacity-70">{facultad}</span>
                 </div>
             </div>
-
-            <p className="line-clamp-3 text-sm opacity-70 mt-4">
+            <p className="line-clamp-8 text-sm opacity-70 my-6">
                 {biostatement}
             </p>
-
-            {centro_id && (
-                <div className="relative overflow-hidden mt-6 text-xs bg-bg-third text-white w-max p-1 pr-4 rounded-full">
-                    <img
-                        src={`/centro-investigativo/${centro_id}-bg.jpg`}
-                        className='w-full h-full object-cover absolute top-0 left-0 brightness-75'
-                        alt=""
-                    />
-                    <div className='relative flex items-center gap-2'>
-                        <div className="w-6 h-6 overflow-hidden rounded-full shrink-0">
-                            <img
-                                className="w-full h-full object-cover"
-                                src={`/centro-investigativo/${centro_id}-logo.jpg`}
-                                alt=""
-                            />
-                        </div>
-                        <b>{centro_investigativo}</b>
-                    </div>
-                </div>
-            )}
-        </Link>
+            <div className='text-right'>
+                <Link to={`/mapa-talento/perfil-profesional/${id}`}>
+                    <Button className='bg-bg-third pl-6 text-sm inline-flex' iconRight icon={<IoIosArrowForward className="w-4 h-4 ml-2" />}>Ver Perfil</Button>
+                </Link>
+            </div>
+        </div>
     )
 }
 

@@ -5,11 +5,21 @@ export const useModal = () => {
   const location = useLocation()
 
   // Abre el modal con contenido identificado
-  const openModal = (modalContent?: string) => {
-    const url = new URLSearchParams(location.search)
-    url.set('modal', modalContent || '')
-    navigate(`${location.pathname}?${url.toString()}`)
-  }
+  const openModal = (modalContent?: string, params?: Record<string, string | number>) => {
+    const url = new URLSearchParams(location.search);
+
+    url.set("modal", modalContent || "");
+
+    // ⬅ iterar parámetros dinámicos
+    if (params) {
+      Object.entries(params).forEach(([key, value]) => {
+        url.set(key, String(value));
+      });
+    }
+
+    navigate(`${location.pathname}?${url.toString()}`);
+  };
+
 
   // Cierra el modal
   const closeModal = () => {

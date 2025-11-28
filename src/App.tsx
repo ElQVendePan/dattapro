@@ -40,22 +40,19 @@ const App = () => {
 
   return (
     <>
-      <main className="lg:py-8 lg:px-10 select-none lg:select-auto">
-        <div className='lg:ml-[16%] lg:w-[84%]'>
-          <div className='max-w-7xl mx-auto lg:relative'>
-            <Routes>
-              <Route path="/" element={userData ? <Navigate to="/mapa-talento" replace /> : <Navigate to="/login" replace />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/signup/:id" element={<Signup />} />
-              <Route path="/mapa-talento" element={<MapaTalento />} />
-              <Route path="/mapa-talento/perfil-profesional/:id" element={<PerfilProfesional />} />
-              <Route path="/convocatorias" element={<Convocatorias />} />
-              <Route path="/convocatorias/:id" element={<Convocatorias />} />
-              <Route path="/busqueda" element={<div onClick={handleLogout}>Cerrar sesion</div>} />
-            </Routes>
-          </div>
-        </div>
+      <main className="select-none lg:select-auto">
+        <Routes>
+          <Route path="/" element={userData ? <Navigate to="/mapa-talento" replace /> : <Navigate to="/login" replace />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup/:id" element={<Signup />} />
+          <Route path="/mapa-talento" element={<MapaTalento />} />
+          <Route path="/mapa-talento/perfil-profesional/:id" element={<PerfilProfesional />} />
+          <Route path="/convocatorias" element={<Convocatorias />} />
+          <Route path="/convocatorias/:mode" element={<Convocatorias />} />
+          <Route path="/convocatorias/:mode/:id" element={<Convocatorias />} />
+          <Route path="/busqueda" element={<div onClick={handleLogout}>Cerrar sesion</div>} />
+        </Routes>
       </main>
 
       <Modal />
