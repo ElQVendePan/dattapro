@@ -42,17 +42,21 @@ const PerfilProfesional: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // Manejo de carga inicial y carga de datos de usuario
                 const response = await axios.get(`${API_URL}/usuarios/get-all-info-usuarios.php?id=${userId}`);
-
                 if (response.data.status === "success") {
-                    console.log(response.data.data)
+                    // Conjunto de datos exitoso
                     setProfileData(response.data.data);
                 } else {
+                    // Conjunto de datos con error
                     setError(response.data.message);
                 }
+                // Obtener idiomas del usuario
                 const idiomasRes = await axios.get(`${API_URL}/maps/get-usuario-idioma.php?id=${userId}`);
                 if (idiomasRes.data.status === "success") {
+                    // Conjunto de datos exitoso
                     const idiomasConPorcentaje = idiomasRes.data.data.map((item: { idioma_id: number; nivel_id: number; idioma: any; nivel: any; }) => {
+                        // Calcular porcentaje basado en nivel_id
                         const porcentaje = Math.round((item.nivel_id / 7) * 100);
                         return {
                             idioma_id: item.idioma_id,
@@ -61,12 +65,15 @@ const PerfilProfesional: React.FC = () => {
                             porcentaje: porcentaje
                         };
                     });
+                    // Actualizar estado con idiomas y porcentajes calculados
                     setIdiomasUsuario(idiomasConPorcentaje);
                 }
             } catch (err) {
+                // Manejo de errores
                 console.log(err);
                 setError((err as Error)?.name + " - " + (err as Error)?.message || "Unknown error.");
             } finally {
+                // Manejo de carga final
                 setLoading(false);
             }
         };

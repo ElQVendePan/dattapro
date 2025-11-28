@@ -62,7 +62,7 @@ const ExportProfile = () => {
             <p className='opacity-70'>Selecciona el formato en el que deseas generar y descargar la información.</p>
             <div className="grid grid-cols-1 gap-4 mt-6">
                 <div className="bg-bg-secondary p-4 rounded-2xl flex gap-4" onClick={exportCSV}>
-                    <div className="w-14 h-14 flex items-center bg-primary justify-center rounded-xl shrink-0">
+                    <div className="w-14 h-14 flex items-center bg-primary text-white justify-center rounded-xl shrink-0">
                         <PiFileCsvFill className="w-1/2 h-1/2 mx-auto" />
                     </div>
                     <div className="text-left">
