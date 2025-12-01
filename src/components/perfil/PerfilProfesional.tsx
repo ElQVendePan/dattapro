@@ -131,13 +131,13 @@ const PerfilProfesional: React.FC = () => {
         <div className="mb-22 p-5">
             <Header hasBack title="Perfil Profesional" />
             <div className="bg-bg-secondary h-48 w-full fixed top-0 left-0 overflow-hidden">
-                <img src={profileData?.foto ?? "/default-bg.jpg"} className="h-full w-full object-cover brightness-30 blur-xl" alt={`${profileData?.nombres} ${profileData?.apellidos}`} />
+                <img src={profileData?.foto ? profileData.foto : "/default-bg.jpg"} className="h-full w-full object-cover brightness-30 blur-xl" alt={`${profileData?.nombres} ${profileData?.apellidos}`} />
             </div>
             <div className="mt-32 px-5 relative bg-bg-primary rounded-t-3xl w-screen -ml-5">
                 <div className="text-center mb-10 pb-10 border-b-1 border-bg-third">
                     <div className="relative inline-block">
                         <div className="rounded-full -mt-14 w-30 h-30 overflow-hidden inline-block border-4 border-bg-third shadow-2xl shadow-primary/15">
-                            <img src={profileData?.foto ?? "/default-bg.jpg"} className="h-full w-full object-cover" alt={`${profileData?.nombres} ${profileData?.apellidos}`} />
+                            <img src={profileData?.foto ? profileData.foto : "/default-bg.jpg"} className="h-full w-full object-cover" alt={`${profileData?.nombres} ${profileData?.apellidos}`} />
                         </div>
                         {profileData?.centro_investigativo_id && (
                             <div className="absolute bottom-2 right-1 w-8 h-8 border-2 border-orange-500 rounded-full overflow-hidden">

@@ -10,6 +10,7 @@ import SignupPage3 from "../components/signup/SignupPage3";
 import SignupPage4 from "../components/signup/SignupPage4";
 import SignupPage6 from "../components/signup/SignupPage6";
 import SignupPage5 from "../components/signup/SignupPage5";
+import SignupComplete from "../components/signup/SignupComplete";
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -94,12 +95,31 @@ const Signup = () => {
         setIdiomas((prev) => prev.filter((item) => item.id !== id));
     };
 
-    const onSubmit = (data: any) => {
+    const onSubmit = async (data: any) => {
         console.log(data);
         setData(data);
 
+        if (id === "6") {
+            try {
+                const res = await axios.post(`${API_URL}usuarios/create.php`, data, {
+                    headers: { "Content-Type": "application/json" }
+                });
+
+                console.log("Respuesta del servidor:", res.data);
+
+                // Aquí podrías navegar a un "gracias" o al dashboard
+                navigate("/signup/complete");
+                return;
+
+            } catch (error) {
+                console.error("❌ Error al enviar datos:", error);
+                alert("No se pudo completar el registro.");
+                return;
+            }
+        }
+
+        // 👉 CONSERVAR TU MISMO FLUJO EXACTO
         if (id) {
-            window.scrollTo(0, 0);
             navigate(`/signup/${Number(id) + 1}`);
         }
     };
@@ -196,6 +216,10 @@ const Signup = () => {
                         </div>
                     </form>
                 </div>
+            )}
+
+            {id === "complete" && (
+                <SignupComplete />
             )}
         </>
     );

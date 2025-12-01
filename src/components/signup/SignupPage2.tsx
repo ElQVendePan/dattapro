@@ -116,10 +116,10 @@ const SignupPage2 = ({ register, errors, watch, tiposDocumento, facultades, prog
             <Question>
                 <QuestionLabel>8. Tipo de Vinculación</QuestionLabel>
                 <RadioGroup>
-                    <Radio {...register("tipo_vinculacion", { required: true })} value="0" isChecked={tipoVinculacionValue === "0"}>
+                    <Radio {...register("tipo_vinculacion", { required: true })} value="1" isChecked={tipoVinculacionValue === "1"}>
                         Profesor de Planta
                     </Radio>
-                    <Radio {...register("tipo_vinculacion", { required: true })} value="1" isChecked={tipoVinculacionValue === "1"}>
+                    <Radio {...register("tipo_vinculacion", { required: true })} value="2" isChecked={tipoVinculacionValue === "2"}>
                         Profesor de Periodo Académico
                     </Radio>
                 </RadioGroup>
@@ -128,10 +128,10 @@ const SignupPage2 = ({ register, errors, watch, tiposDocumento, facultades, prog
             <Question>
                 <QuestionLabel>9. Sede</QuestionLabel>
                 <RadioGroup>
-                    <Radio {...register("sede", { required: true })} value="0" isChecked={sedeValue === "0"}>
+                    <Radio {...register("sede", { required: true })} value="1" isChecked={sedeValue === "1"}>
                         Cúcuta
                     </Radio>
-                    <Radio {...register("sede", { required: true })} value="1" isChecked={sedeValue === "1"}>
+                    <Radio {...register("sede", { required: true })} value="2" isChecked={sedeValue === "2"}>
                         Barranquilla
                     </Radio>
                 </RadioGroup>

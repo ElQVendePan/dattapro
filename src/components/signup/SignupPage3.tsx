@@ -25,18 +25,16 @@ const SignupPage3 = ({ register, watch, control, areasConocimiento, certificacio
     const areaConocimientoValue = watch("area_conocimiento");
     const certificacionValue = watch("certificacion");
 
-    // 🔥 PREGRADOS
     const { fields: pregradoFields, append: addPregrado, remove: removePregrado } = useFieldArray({
         control,
-        name: "pregrados"
+        name: "pregrados",
+        rules: { required: "Debe agregar al menos un pregrado" }
     });
 
-    // 🔥 POSGRADOS
     const { fields: posgradoFields, append: addPosgrado, remove: removePosgrado } = useFieldArray({
         control,
         name: "posgrados"
     });
-
     return (
         <>
             <img src="/dattapro-logo-white.svg" className="h-10" alt="logo" />
@@ -138,7 +136,7 @@ const SignupPage3 = ({ register, watch, control, areasConocimiento, certificacio
 
                         {/* Slider del idioma */}
                         <LanguageSlider
-                            name={`idioma_${idioma.id}`}
+                            name={`idiomas.${idioma.id}`}
                             control={control}
                             niveles={nivelesIdioma.map((n: any) => n.nivel)}
                         />

@@ -37,7 +37,7 @@ const PerfilMatchCard = ({ usuario, porcentaje }: PerfilMatchCardProps) => {
             <div className="flex items-center gap-4">
                 <div className="relative">
                     <div className="w-16 h-16 overflow-hidden rounded-full">
-                        <img className="w-full h-full object-cover" src={foto} alt="" />
+                        <img className="w-full h-full object-cover" src={foto ? foto : "/default-bg.jpg"} alt="" />
                     </div>
 
                     {centro_id && (

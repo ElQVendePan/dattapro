@@ -39,7 +39,7 @@ const PerfilSmallCard = ({ id }: { id: string }) => {
             <div className="flex items-center gap-4">
                 <div className="relative">
                     <div className='w-16 h-16 overflow-hidden rounded-full'>
-                        <img className="w-full h-full object-cover" src={foto} alt="" />
+                        <img className="w-full h-full object-cover" src={foto ? foto : "/default-bg.jpg"} alt="" />
                     </div>
                     {centro_id && (
                         <div className="absolute overflow-hidden -right-1 border-1 border-primary bottom-0 w-6 h-6 rounded-full">
