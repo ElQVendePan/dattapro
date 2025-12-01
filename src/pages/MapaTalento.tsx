@@ -9,7 +9,7 @@ const API_URL = import.meta.env.VITE_API_BASE_URL
 const MapaTalento = () => {
     const [centros, setCentros] = useState([]);
     const [usuarios, setUsuarios] = useState<{ id: string }[]>([]);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState(0);
     const tabs = ["Perfiles", "Centros de Investigación"];
 
@@ -43,7 +43,7 @@ const MapaTalento = () => {
 
         // Ejecutar ambas
         Promise.all([fetchCentros(), fetchNewUsuarios()])
-            .finally(() => setLoading(false));
+            // .finally(() => setLoading(false));
 
     }, []);
 
