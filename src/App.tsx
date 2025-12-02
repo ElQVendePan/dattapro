@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import PerfilProfesional from './components/perfil/PerfilProfesional'
 import MapaTalento from './pages/MapaTalento'
 import Signup from './pages/Signup'
+import Search from './pages/Search'
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('/')
@@ -51,7 +52,7 @@ const App = () => {
           <Route path="/convocatorias" element={<Convocatorias />} />
           <Route path="/convocatorias/:mode" element={<Convocatorias />} />
           <Route path="/convocatorias/:mode/:id" element={<Convocatorias />} />
-          <Route path="/busqueda" element={<div onClick={handleLogout}>Cerrar sesion</div>} />
+          <Route path="/busqueda" element={<Search />} />
         </Routes>
       </main>
 
