@@ -1,7 +1,7 @@
 import { FaSuitcase } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import Button from "../Button";
+import Button from "../forms/Button";
 import { IoIosArrowForward } from "react-icons/io";
 
 interface UsuarioData {

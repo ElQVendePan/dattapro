@@ -1,5 +1,5 @@
 import Input from '../components/forms/Input'
-import Button from '../components/Button'
+import Button from '../components/forms/Button'
 import { useUserStore } from '../store/useUserStore';
 import { FaLock, FaUser } from 'react-icons/fa';
 

@@ -1,5 +1,5 @@
 import { TiWarning } from 'react-icons/ti'
-import Button from '../components/Button'
+import Button from '../components/forms/Button'
 
 const Test = () => {
     return (

@@ -1,5 +1,5 @@
 import { FaAward, FaShareAlt } from "react-icons/fa";
-import Button from "../Button";
+import Button from "../forms/Button";
 import { HiExternalLink } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import Subtitle from "../Subtitle";

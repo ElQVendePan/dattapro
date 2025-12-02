@@ -5,7 +5,7 @@ import ConvocatoriaDetalle from "../components/convocatoria/ConvocatoriaDetalle"
 import { useParams } from "react-router-dom"
 import Header from "../components/Header"
 import { Link } from "react-router-dom";
-import Button from "../components/Button"
+import Button from "../components/forms/Button"
 import { IoAdd } from "react-icons/io5"
 import ConvocatoriaForm from "../components/convocatoria/ConvocatoriaForm"
 

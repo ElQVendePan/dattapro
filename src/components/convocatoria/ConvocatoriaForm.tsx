@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Input from "../forms/Input";
 import TextArea from "../forms/TextArea";
-import Button from "../Button";
+import Button from "../forms/Button";
 import Question, { QuestionLabel } from "../forms/Question";
 import { Radio, RadioGroup } from "../forms/Radio";
 

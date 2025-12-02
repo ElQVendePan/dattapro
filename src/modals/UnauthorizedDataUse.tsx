@@ -1,4 +1,4 @@
-import Button from "../components/Button"
+import Button from "../components/forms/Button"
 import { FaSadTear } from "react-icons/fa"
 import { useModal } from "../hook/useModal";
 

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import Subtitle from "../Subtitle";
 import Question, { QuestionLabel } from "../forms/Question";
 import { Radio, RadioGroup } from "../forms/Radio";
-import Button from "../Button";
+import Button from "../forms/Button";
 import { useModal } from "../../hook/useModal";
 import { useNavigate } from "react-router-dom";
 

@@ -1,4 +1,4 @@
-import Button from '../components/Button'
+import Button from '../components/forms/Button'
 import { FaLink } from 'react-icons/fa'
 
 const RedirectModal = () => {

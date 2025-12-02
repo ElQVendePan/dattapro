@@ -3,7 +3,7 @@ import axios from "axios";
 import Header from "../Header";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaGlobeAmericas, FaLink, FaShareAlt, FaSuitcase } from "react-icons/fa";
-import Button from "../Button";
+import Button from "../forms/Button";
 import { useModal } from "../../hook/useModal";
 import { MdCloudDownload, MdInsights, MdWorkOutline } from "react-icons/md";
 import { useParams } from "react-router-dom";

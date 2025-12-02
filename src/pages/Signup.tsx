@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import SignupPage1 from "../components/signup/SignupPage1";
 import { useForm } from "react-hook-form";
-import Button from "../components/Button";
+import Button from "../components/forms/Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSignupStore } from "../store/signupStore";

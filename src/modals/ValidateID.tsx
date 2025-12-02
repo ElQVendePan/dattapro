@@ -1,5 +1,5 @@
 import { MdPersonSearch } from 'react-icons/md'
-import Button from '../components/Button'
+import Button from '../components/forms/Button'
 import Input from '../components/forms/Input'
 import { useForm } from 'react-hook-form';
 
