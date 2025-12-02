@@ -1,9 +1,3 @@
-¡Claro! Te armo un **README profesional para GitHub**, usando toda la documentación técnica que hicimos, pero adaptado al formato y tono perfecto para un repositorio.
-
-Te lo dejo listo para copiar/pegar:
-
----
-
 # Dattapro – Plataforma de Mapeo de Talento
 
 **React + TypeScript + Vite + Tailwind + Zustand + PWA**
