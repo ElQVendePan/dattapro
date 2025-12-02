@@ -1,73 +1,199 @@
-# React + TypeScript + Vite
+¡Claro! Te armo un **README profesional para GitHub**, usando toda la documentación técnica que hicimos, pero adaptado al formato y tono perfecto para un repositorio.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Te lo dejo listo para copiar/pegar:
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Dattapro – Plataforma de Mapeo de Talento
 
-## React Compiler
+**React + TypeScript + Vite + Tailwind + Zustand + PWA**
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Dattapro es una plataforma web diseñada para **identificar, organizar y visualizar el talento humano** de una institución académica, permitiendo conectar docentes, investigadores y profesionales con proyectos y convocatorias.
 
-## Expanding the ESLint configuration
+Este repositorio contiene el **frontend**, desarrollado con tecnologías modernas orientadas a escalabilidad, rendimiento y una interfaz accesible para usuarios de diferentes perfiles.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tecnologías principales
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Área                     | Tecnologías                   |
+| ------------------------ | ----------------------------- |
+| **Framework**            | React 19, TypeScript          |
+| **Bundler / Dev Server** | Vite 7                        |
+| **UI / Estilos**         | Tailwind CSS 4, CSS variables |
+| **Estado global**        | Zustand + Persist             |
+| **Formularios**          | react-hook-form               |
+| **HTTP**                 | Axios                         |
+| **PWA**                  | vite-plugin-pwa               |
+| **Rutas**                | React Router DOM              |
+| **Exportación Excel**    | xlsx                          |
+| **Íconos**               | react-icons                   |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Estructura del proyecto
+
+```text
+src/
+ ├── App.tsx
+ ├── main.tsx
+ ├── index.css
+ ├── components/
+ │    ├── layout/
+ │    ├── ui/
+ │    ├── perfil/
+ │    ├── convocatoria/
+ │    ├── forms/
+ │    └── signup/
+ ├── pages/
+ ├── modals/
+ ├── hook/
+ ├── store/
+ ├── types/
+ └── assets/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Funcionalidades principales
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Autenticación (básica)
+
+* Manejo de sesión mediante Zustand persistido en localStorage.
+* Simulación de login (lista para conectar a un backend real).
+
+### Navegación
+
+* Implementada con **React Router**.
+* Rutas principales:
+
+  * `/login`
+  * `/signup/:id` (registro multi-paso)
+  * `/mapa-talento`
+  * `/mapa-talento/perfil-profesional/:id`
+  * `/convocatorias`
+  * `/convocatorias/:mode/:id`
+
+### Mapa de Talento
+
+* Listado de perfiles profesionales.
+* Listado de centros de investigación.
+* Tarjetas de usuario dinámicas (fetch individual por ID).
+* Modal de detalle para centros de investigación.
+
+### Perfil Profesional
+
+* Vista completa del usuario: datos, experiencia, formación, competencias, certificaciones y áreas de conocimiento.
+* Exportación del perfil a **Excel (.xlsx)**.
+* Soporte para íconos dinámicos por área de conocimiento.
+
+### Registro multi-paso
+
+* 6 pantallas progresivas con validación.
+* Guardado temporal de datos con Zustand.
+* Peticiones dinámicas a catálogos (idiomas, facultades, sectores, etc.).
+* Listo para enviar al backend en un único payload final.
+
+### Convocatorias
+
+* Listado de convocatorias con filtros.
+* Detalle con imagen, entidad, descripción y estado.
+* Formulario de creación/edición.
+* Sistema de recomendación de perfiles según parámetros de match.
+
+### Sistema global de modales
+
+Controlado mediante la URL:
+`/?modal=centro-investigacion&id=3`
+
+Incluye:
+
+* Modal de redirección
+* Exportación de perfil
+* Validación de documento
+* Perfil externo
+* Centro de investigación
+
+---
+
+## Arquitectura y flujo
+
+### App Shell
+
+El componente `App.tsx` actúa como esqueleto principal:
+
+* Renderiza Navbar, Header y Modal global.
+* Controla permisos para navegaciones.
+* Contiene todas las rutas de la app.
+
+### Estado global (Zustand)
+
+**useUserStore**
+
+* Guarda la sesión del usuario.
+* Persistencia automática.
+
+**signupStore**
+
+* Maneja el formulario multi-step.
+* Permite guardar progresivamente información.
+
+### Hooks personalizados
+
+* **useModal** → Abre/cierra modales desde la query string.
+* **useDragScroll** → Scroll horizontal mediante arrastre (disponible para usar).
+
+---
+
+## PWA
+
+Configurada mediante:
+
+```
+vite-plugin-pwa
+```
+
+Incluye:
+
+* Manifest
+* Service Worker con autoUpdate
+* Iconos en múltiples resoluciones
+
+Permite:
+
+* Instalación como app
+* Carga más rápida
+* Funcionalidad básica offline
+
+---
+
+## Configuración de entornos
+
+El proyecto utiliza distintos `.env` según el escenario:
+
+```
+.env.dev
+.env.devlan
+.env.hotspot
+.env.production
+```
+
+Variables importantes:
+
+```env
+VITE_PAGE_URL=
+VITE_API_BASE_URL=
+```
+
+---
+
+## Scripts disponibles
+
+```bash
+npm run dev          # modo desarrollo
+npm run dev:lan      # desarrollo por red LAN
+npm run dev:hotspot  # desarrollo vía hotspot
+npm run build        # build de producción
+npm run preview      # previsualizar build
+npm run lint         # corre ESLint
 ```

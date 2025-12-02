@@ -32,6 +32,7 @@ const Modal = () => {
         setIsClosing(true)
         setTranslateY(window.innerHeight * 0.9)
         setTimeout(() => {
+            //Se va hacia atrás en el historial
             window.history.back()
             setIsClosing(false)
             setTranslateY(0)
